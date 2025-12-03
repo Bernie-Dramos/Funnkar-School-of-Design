@@ -27,7 +27,7 @@ export default function Features() {
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 text-balance tracking-tight">
-            Unlock Your <span className="text-accent">Design Potential</span>
+            Unlock Your <span className="text-primary">Design Potential</span>
           </h2>
           <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto">
             Our design programs offer comprehensive support to help you succeed in your creative career
@@ -38,10 +38,10 @@ export default function Features() {
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="bg-background border border-foreground/10 rounded-xl p-6 hover:border-accent/50 transition-all hover:shadow-lg"
+              className="bg-background border border-foreground/10 rounded-xl p-6 hover:border-primary/50 transition-all hover:shadow-lg"
             >
               <div className="mb-4">
-                <CheckCircle2 className="w-8 h-8 text-accent" />
+                <CheckCircle2 className="w-8 h-8 text-primary" />
               </div>
               <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
               <p className="text-sm text-foreground/70">{feature.description}</p>

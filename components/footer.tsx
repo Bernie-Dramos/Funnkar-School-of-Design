@@ -48,11 +48,6 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="#" className="hover:text-accent transition">
-                  Coaches
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-accent transition">
                   Contact
                 </Link>
               </li>

@@ -31,9 +31,6 @@ export default function Navigation() {
             <Link href="#courses" className="text-sm font-medium hover:text-primary transition-colors">
               Courses
             </Link>
-            <Link href="#team" className="text-sm font-medium hover:text-primary transition-colors">
-              Coaches
-            </Link>
             <Link href="#contact" className="text-sm font-medium hover:text-primary transition-colors">
               Contact
             </Link>
@@ -50,9 +47,6 @@ export default function Navigation() {
           <div className="mt-4 space-y-3 md:hidden pb-4">
             <Link href="#courses" className="block text-sm font-medium hover:text-primary transition-colors">
               Courses
-            </Link>
-            <Link href="#instructors" className="block text-sm font-medium hover:text-primary transition-colors">
-              Instructors
             </Link>
             <Link href="#contact" className="block text-sm font-medium hover:text-primary transition-colors">
               Contact

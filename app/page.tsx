@@ -1,5 +1,4 @@
 import Hero from "@/components/hero"
-import Team from "@/components/team"
 import Contact from "@/components/contact"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
@@ -15,7 +14,6 @@ export default function Home() {
         <Features />
         <Courses />
       </div>
-      <Team />
       <Contact />
       <Footer />
     </div>
