@@ -11,7 +11,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-8 sm:mb-12">
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4 hover:opacity-80 transition-opacity">
-              <Image src="/LOGO.png" alt="Funnkar School of Design" width={32} height={32} className="h-8 w-8" />
+              <Image src="/LOGO.png" alt="Funnkar School of Design" width={40} height={30} 
+              style={{ borderRadius: 5 }}/>
               <span className="text-base font-bold tracking-tight text-foreground" style={{ fontFamily: 'Tonus Contrast, sans-serif' }}>Funnkar School of Design</span>
             </Link>
             <p className="text-sm text-foreground/70">

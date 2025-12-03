@@ -17,9 +17,9 @@ export default function Navigation() {
               src="/LOGO.png"
               alt="Funnkar School of Design"
               width={40}
-              height={40}
+              height={30}
+              className="h-6 w-8 sm:h-10 sm:w-12"
               style={{ borderRadius: 5 }}
-              className="h-8 w-8 sm:h-10 sm:w-10"
             />
             <span className="text-base sm:text-lg font-bold tracking-tight text-foreground hidden sm:inline" style={{ fontFamily: 'Tonus Contrast, sans-serif' }}>
               Funnkar School of Design
