@@ -9,8 +9,8 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-12 sm:py-20 md:py-32 px-4 sm:px-6 bg-card/30">
-      <div className="mx-auto max-w-4xl">
+    <section id="contact" className="py-12 sm:py-20 md:py-32 px-4 sm:px-6 bg-card/30 flex flex-col">
+      <div className="mx-auto max-w-4xl w-full">
         <div className="text-center mb-8 sm:mb-12">
           <span className="text-xs sm:text-sm font-medium text-accent uppercase tracking-widest">Get in Touch</span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 sm:mt-3 mb-3 sm:mb-4">
