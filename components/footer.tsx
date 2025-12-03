@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Instagram, Linkedin, Twitter, Dribbble } from "lucide-react"
 
 export default function Footer() {
   return (
@@ -62,17 +61,14 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4 text-foreground">Follow Us</h4>
             <div className="flex gap-4">
-              <Link href="#" aria-label="Instagram" className="hover:text-accent transition">
-                <Instagram size={20} />
+              <Link href="#" aria-label="Instagram" className="hover:opacity-80 transition">
+                <Image src="/instagram.png" alt="Instagram" width={30} height={30} />
               </Link>
-              <Link href="#" aria-label="LinkedIn" className="hover:text-accent transition">
-                <Linkedin size={20} />
+              <Link href="#" aria-label="LinkedIn" className="hover:opacity-80 transition">
+                <Image src="/linkedin.png" alt="LinkedIn" width={30} height={30} />
               </Link>
-              <Link href="#" aria-label="Twitter" className="hover:text-accent transition">
-                <Twitter size={20} />
-              </Link>
-              <Link href="#" aria-label="Dribbble" className="hover:text-accent transition">
-                <Dribbble size={20} />
+              <Link href="https://wa.me/9325167605" aria-label="WhatsApp" className="hover:opacity-80 transition">
+                <Image src="/whatsapp.png" alt="WhatsApp" width={30} height={30} />
               </Link>
             </div>
           </div>

@@ -51,6 +51,8 @@ export default function Courses() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    email: "",
+    phone: "",
     selectedCourse: "",
   })
 
@@ -150,13 +152,28 @@ export default function Courses() {
                       required
                     />
                   </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="lastName">Email</Label>
+                    <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
-                      placeholder="abc123@gmail.com"
+                      type="email"
+                      placeholder="john@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone Number</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="+1 (555) 000-0000"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       required
                     />
                   </div>
