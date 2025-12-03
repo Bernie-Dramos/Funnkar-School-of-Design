@@ -53,6 +53,8 @@
 @theme inline {
   --font-sans: "Geist", "Geist Fallback";
   --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-poppins: var(--font-poppins);
+  --font-inter: var(--font-inter);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -97,5 +99,11 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h1, h2 {
+    font-family: var(--font-poppins), sans-serif;
+  }
+  p {
+    font-family: var(--font-inter), sans-serif;
   }
 }
