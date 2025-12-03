@@ -28,13 +28,13 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href="#courses" className="text-sm font-medium hover:text-accent transition-colors">
+            <Link href="#courses" className="text-sm font-medium hover:text-primary transition-colors">
               Courses
             </Link>
-            <Link href="#team" className="text-sm font-medium hover:text-accent transition-colors">
+            <Link href="#team" className="text-sm font-medium hover:text-primary transition-colors">
               Coaches
             </Link>
-            <Link href="#contact" className="text-sm font-medium hover:text-accent transition-colors">
+            <Link href="#contact" className="text-sm font-medium hover:text-primary transition-colors">
               Contact
             </Link>
           </div>
@@ -48,13 +48,13 @@ export default function Navigation() {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="mt-4 space-y-3 md:hidden pb-4">
-            <Link href="#courses" className="block text-sm font-medium hover:text-accent transition-colors">
+            <Link href="#courses" className="block text-sm font-medium hover:text-primary transition-colors">
               Courses
             </Link>
-            <Link href="#instructors" className="block text-sm font-medium hover:text-accent transition-colors">
+            <Link href="#instructors" className="block text-sm font-medium hover:text-primary transition-colors">
               Instructors
             </Link>
-            <Link href="#contact" className="block text-sm font-medium hover:text-accent transition-colors">
+            <Link href="#contact" className="block text-sm font-medium hover:text-primary transition-colors">
               Contact
             </Link>
           </div>

@@ -91,8 +91,8 @@ export default function Courses() {
         </div>
 
         <div className="text-center mt-12 sm:mt-16">
-          <button className="px-8 sm:px-12 py-3 sm:py-4 bg-accent text-accent-foreground rounded-full font-bold hover:bg-accent/90 transition-all hover:shadow-lg hover:shadow-accent/30 text-base sm:text-lg">
-            Apply Now
+          <button className="px-8 sm:px-12 py-3 sm:py-4 bg-primary text-primary-foreground rounded-full font-bold hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/30 text-base sm:text-lg">
+            Apply Now !
           </button>
         </div>
       </div>
