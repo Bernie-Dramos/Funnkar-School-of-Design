@@ -28,6 +28,9 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
+            <Link href="#hero" className="text-sm font-medium hover:text-primary transition-colors">
+              About
+            </Link>
             <Link href="#courses" className="text-sm font-medium hover:text-primary transition-colors">
               Courses
             </Link>
