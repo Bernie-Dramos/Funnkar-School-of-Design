@@ -72,13 +72,13 @@ export default function Footer() {
             <h4 className="font-bold mb-4 text-foreground">Follow Us</h4>
             <div className="flex gap-4">
               <Link href="https://www.instagram.com/funnkar.school.of.design?igsh=OXhmdnZqcXdxemho" aria-label="Instagram" className="hover:opacity-80 transition">
-                <Image src="/instagram.png" alt="Instagram" width={30} height={30} />
+                <Image src="\instagram.png" alt="Instagram" width={25} height={25} />
               </Link>
               <Link href="https://www.linkedin.com/company/funnkarschoolofdesign/" aria-label="LinkedIn" className="hover:opacity-80 transition">
-                <Image src="/linkedin.png" alt="LinkedIn" width={30} height={30} />
+                <Image src="/public/linkedin.png" alt="LinkedIn" width={25} height={25} />
               </Link>
               <Link href="https://wa.me/9325167605" aria-label="WhatsApp" className="hover:opacity-80 transition">
-                <Image src="/whatsapp.png" alt="WhatsApp" width={30} height={30} />
+                <Image src="\whatsapp.png" alt="WhatsApp" width={21} height={21} />
               </Link>
             </div>
           </div>
