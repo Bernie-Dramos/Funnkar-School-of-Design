@@ -1,11 +1,54 @@
 "use client"
 
 import type React from "react"
+import { useState } from "react"
 import { Mail, Phone, MapPin } from "lucide-react"
 
 export default function Contact() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  })
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validate all fields are filled
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      alert("Please fill in all fields")
+      return
+    }
+    
+    // Submit to Google Form
+    try {
+      const googleFormData = new FormData()
+      
+      googleFormData.append('entry.70361504', formData.name)
+      googleFormData.append('entry.1967203626', formData.email)
+      googleFormData.append('entry.754594676', formData.subject)
+      googleFormData.append('entry.1917029081', formData.message)
+      
+      await fetch('https://docs.google.com/forms/d/e/1FAIpQLSfLx07W9TrvjnkqKzvp5iPTX7oL_26hYZKFjq67gHOmcYns6Q/formResponse', {
+        method: 'POST',
+        body: googleFormData,
+        mode: 'no-cors'
+      })
+      
+      alert("Message sent successfully!")
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      })
+    } catch (error) {
+      console.error("Submission error:", error)
+      alert("There was an error sending your message. Please try again.")
+    }
   }
 
   return (
@@ -53,22 +96,30 @@ export default function Contact() {
             <input
               type="text"
               placeholder="Your Name"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-accent text-sm sm:text-base"
             />
             <input
               type="email"
               placeholder="Your Email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-accent text-sm sm:text-base"
             />
           </div>
           <input
             type="text"
             placeholder="Subject"
+            value={formData.subject}
+            onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
             className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-accent text-sm sm:text-base"
           />
           <textarea
             placeholder="Tell us what we can help you with..."
             rows={5}
+            value={formData.message}
+            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-accent resize-none text-sm sm:text-base"
           ></textarea>
           <button
