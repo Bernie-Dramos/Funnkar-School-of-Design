@@ -147,12 +147,15 @@ Sticky header with responsive mobile menu, smooth scroll navigation using hash a
 Full-height hero with gradient background, animated elements, and CTA buttons.
 
 ### Courses
-Grid of course cards with descriptions, durations, and tools (ordered by difficulty):
+Grid of course cards with descriptions, durations, and tools:
 1. **Sketching and 2D Art** (Beginner) - Photoshop, Illustrator, Procreate
 2. **3D Modelling** (Intermediate) - Maya, 3ds Max
-3. **3D Animation** (Intermediate) - Maya, Blender, MotionBuilder
-4. **Graphics Design** (Advanced) - InDesign, Illustrator, Lightroom, Photoshop
-5. **VFX Animation Diploma** (Professional) - After Effects, Nuke, Houdini, Premiere Pro
+3. **Interior Design** (Intermediate) - SketchUp, AutoCAD, 3ds Max
+4. **Game Design** (Intermediate) - Unity, Unreal, Blender
+5. **3D Animation** (Advanced) - Maya, Blender, MotionBuilder
+6. **VFX Animation Diploma** (Professional) - After Effects, Nuke, Houdini, Premiere Pro
+7. **Fine Arts** (All Levels) - Photoshop, Procreate, Traditional Media
+8. **Graphics Design** (All Levels) - InDesign, Illustrator, Lightroom, Photoshop
 
 ### Application Form
 Interactive dialog modal with form fields:

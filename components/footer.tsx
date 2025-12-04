@@ -33,17 +33,32 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="#courses" className="hover:text-accent transition">
+                  Interior Design
+                </Link>
+              </li>
+              <li>
+                <Link href="#courses" className="hover:text-accent transition">
+                  Game Design
+                </Link>
+              </li>
+              <li>
+                <Link href="#courses" className="hover:text-accent transition">
                   3D Animation
                 </Link>
               </li>
               <li>
                 <Link href="#courses" className="hover:text-accent transition">
-                  Graphics Design
+                  VFX Animation Diploma
                 </Link>
               </li>
               <li>
                 <Link href="#courses" className="hover:text-accent transition">
-                  VFX Animation Diploma
+                  Fine Arts
+                </Link>
+              </li>
+              <li>
+                <Link href="#courses" className="hover:text-accent transition">
+                  Graphics Design
                 </Link>
               </li>
             </ul>

@@ -119,18 +119,21 @@ const courses = [
     accentColor: "from-primary/25 to-primary/8",
     // ...
   },
-  // 5 courses total: Sketching, 3D Modelling, 3D Animation, Graphics Design, VFX Diploma
+  // 8 courses total: Sketching, 3D Modelling, 3D Animation, Graphics Design, VFX Diploma, Game Design, Fine Arts, Interior Design
 ]
 ```
 
 **Pattern**: No CMS or API. Content updates require code changes.
 
-**All Courses** (ordered by difficulty):
+**All Courses**:
 1. Sketching and 2D Art (Beginner)
 2. 3D Modelling (Intermediate)
-3. 3D Animation (Intermediate)
-4. Graphics Design (Advanced)
-5. VFX Animation Diploma (Professional)
+3. Interior Design (Intermediate)
+4. Game Design (Intermediate)
+5. 3D Animation (Advanced)
+6. VFX Animation Diploma (Professional)
+7. Fine Arts (All Levels)
+8. Graphics Design (All Levels)
 
 ## Development Workflows
 
