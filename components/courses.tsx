@@ -20,12 +20,12 @@ const courses = [
   },
   {
     id: 2,
-    title: "2D Animation",
-    description: "Learn professional 2D animation with Photoshop, After Effects, Premiere Pro, and Animate. Complete animation workflow training.",
-    level: "Intermediate",
+    title: "Sketching and 2D Art",
+    description: "Develop foundational drawing and sketching skills with digital 2D art techniques. Learn composition, perspective, and digital illustration.",
+    level: "Beginner",
     duration: "1-3 months",
     benefits: ["1-3 months core course", "6 month specialization program", "Exclusive e-books & learning Resources", "Enrollment Benefits"],
-    tools: ["Ps", "Ae", "Pr", "An"],
+    tools: ["Ps", "Ai", "Procreate"],
     accentColor: "from-primary/25 to-primary/8",
   },
   {
@@ -37,6 +37,26 @@ const courses = [
     benefits: ["1-3 months core course", "6 month specialization program", "Exclusive e-books & learning Resources", "Enrollment Benefits"],
     tools: ["Maya", "3ds Max"],
     accentColor: "from-primary/20 to-primary/5",
+  },
+  {
+    id: 4,
+    title: "VFX Animation Diploma",
+    description: "Comprehensive VFX training covering compositing, motion graphics, and visual effects. Industry-ready diploma program.",
+    level: "Professional",
+    duration: "6-12 months",
+    benefits: ["Diploma certification", "Portfolio development", "Exclusive e-books & learning Resources", "Job placement assistance"],
+    tools: ["Ae", "Nuke", "Houdini", "Pr"],
+    accentColor: "from-primary/28 to-primary/12",
+  },
+  {
+    id: 5,
+    title: "3D Animation",
+    description: "Master character animation, rigging, and motion dynamics. Create professional animated sequences for film and games.",
+    level: "Advanced",
+    duration: "3-6 months",
+    benefits: ["Advanced animation techniques", "Character rigging", "Exclusive e-books & learning Resources", "Demo reel creation"],
+    tools: ["Maya", "Blender", "MotionBuilder"],
+    accentColor: "from-primary/22 to-primary/6",
   },
 ]
 
