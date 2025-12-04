@@ -70,15 +70,15 @@ export default function Footer() {
           </div>
           <div>
             <h4 className="font-bold mb-4 text-foreground">Follow Us</h4>
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center">
               <Link href="https://www.instagram.com/funnkar.school.of.design?igsh=OXhmdnZqcXdxemho" aria-label="Instagram" className="hover:opacity-80 transition">
-                <Image src="\instagram.png" alt="Instagram" width={25} height={25} />
+                <Image src="/instagram.svg" alt="Instagram" width={26} height={26} />
               </Link>
               <Link href="https://www.linkedin.com/company/funnkarschoolofdesign/" aria-label="LinkedIn" className="hover:opacity-80 transition">
-                <Image src="/public/linkedin.png" alt="LinkedIn" width={25} height={25} />
+                <Image src="/linkedin.svg" alt="LinkedIn" width={24} height={24} />
               </Link>
               <Link href="https://wa.me/9325167605" aria-label="WhatsApp" className="hover:opacity-80 transition">
-                <Image src="\whatsapp.png" alt="WhatsApp" width={21} height={21} />
+                <Image src="/whatsapp.svg" alt="WhatsApp" width={22} height={22} />
               </Link>
             </div>
           </div>
