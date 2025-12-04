@@ -23,17 +23,27 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-foreground/70">
               <li>
                 <Link href="#courses" className="hover:text-accent transition">
-                  Graphics Design
-                </Link>
-              </li>
-              <li>
-                <Link href="#courses" className="hover:text-accent transition">
-                  2D Animation
+                  Sketching and 2D Art
                 </Link>
               </li>
               <li>
                 <Link href="#courses" className="hover:text-accent transition">
                   3D Modelling
+                </Link>
+              </li>
+              <li>
+                <Link href="#courses" className="hover:text-accent transition">
+                  3D Animation
+                </Link>
+              </li>
+              <li>
+                <Link href="#courses" className="hover:text-accent transition">
+                  Graphics Design
+                </Link>
+              </li>
+              <li>
+                <Link href="#courses" className="hover:text-accent transition">
+                  VFX Animation Diploma
                 </Link>
               </li>
             </ul>
