@@ -197,7 +197,7 @@ export default function Courses() {
 
                 <div className="space-y-2">
                   <Label>Date of Birth</Label>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="flex gap-1">
                     <Select value={day} onValueChange={setDay} required>
                       <SelectTrigger>
                         <SelectValue placeholder="DD" />
