@@ -126,38 +126,35 @@ export default function Courses() {
     }
     
     const dateOfBirth = `${day}/${month}/${year}`
-    const name = `${formData.firstName} ${formData.lastName}`
+    const fullName = `${formData.firstName} ${formData.lastName}`.trim()
     
-    // Prepare data for Google Sheets
-    const submissionData = {
-      Name: name,
-      Email: formData.email,
-      Number: formData.phone,
-      DOB: dateOfBirth,
-      Course: formData.selectedCourse,
-    }
-    
+    // Submit to Google Form
     try {
-      // Send to Google Sheets using URLSearchParams
-      const formBody = new URLSearchParams({
-        Name: name,
-        Email: formData.email,
-        Number: formData.phone,
-        DOB: dateOfBirth,
-        Course: formData.selectedCourse,
-      })
+      const googleFormData = new FormData()
       
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzXTDUQcrFkpcRJXWpUz19yvhE2CNJDmAMqPo6kJAHN7ekdNGSGbdR0IdGaYgDwnxPkxw/exec', {
+      // Log data being sent
+      console.log('Form Data State:', formData)
+      console.log('Full Name:', fullName)
+      console.log('Email:', formData.email)
+      console.log('Phone:', formData.phone)
+      console.log('DOB:', dateOfBirth)
+      console.log('Course:', formData.selectedCourse)
+      
+      // Based on testing: Name=433936759, Email=1339288077, Phone=1494324912, DOB=684334802, Course=550490451
+      googleFormData.append('entry.433936759', fullName)  // This goes to Name column
+      googleFormData.append('entry.1339288077', formData.email)  // This goes to Email column  
+      googleFormData.append('entry.1494324912', formData.phone)  // Try this for Phone
+      googleFormData.append('entry.684334802', dateOfBirth)  // Try this for DOB
+      googleFormData.append('entry.550490451', formData.selectedCourse)  // Course is correct
+      
+      await fetch('https://docs.google.com/forms/d/e/1FAIpQLSfbj-NVyCmnsBQsxOValIxUxR9UK1jvSIrQUrF3r6RXHjXLXQ/formResponse', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formBody.toString(),
-        redirect: 'follow',
+        body: googleFormData,
+        mode: 'no-cors'
       })
       
       alert("Application submitted successfully!")
-      console.log("Form submitted:", submissionData)
+      console.log("Form submitted successfully!")
       resetForm()
       setOpen(false)
     } catch (error) {
