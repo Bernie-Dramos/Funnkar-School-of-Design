@@ -19,7 +19,6 @@ export default function Navigation() {
               width={40}
               height={40}
               className="h-8 w-8 sm:h-11 sm:w-11"
-              style={{ borderRadius: 5 }}
             />
             <span className="text-base sm:text-lg font-bold tracking-tight text-foreground hidden sm:inline" style={{ fontFamily: 'Tonus Contrast, sans-serif' }}>
               Funnkar School of Design
