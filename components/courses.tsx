@@ -132,20 +132,11 @@ export default function Courses() {
     try {
       const googleFormData = new FormData()
       
-      // Log data being sent
-      console.log('Form Data State:', formData)
-      console.log('Full Name:', fullName)
-      console.log('Email:', formData.email)
-      console.log('Phone:', formData.phone)
-      console.log('DOB:', dateOfBirth)
-      console.log('Course:', formData.selectedCourse)
-      
-      // Based on testing: Name=433936759, Email=1339288077, Phone=1494324912, DOB=684334802, Course=550490451
-      googleFormData.append('entry.433936759', fullName)  // This goes to Name column
-      googleFormData.append('entry.1339288077', formData.email)  // This goes to Email column  
-      googleFormData.append('entry.1494324912', formData.phone)  // Try this for Phone
-      googleFormData.append('entry.684334802', dateOfBirth)  // Try this for DOB
-      googleFormData.append('entry.550490451', formData.selectedCourse)  // Course is correct
+      googleFormData.append('entry.433936759', fullName)
+      googleFormData.append('entry.1339288077', formData.email)
+      googleFormData.append('entry.1494324912', formData.phone)
+      googleFormData.append('entry.684334802', dateOfBirth)
+      googleFormData.append('entry.550490451', formData.selectedCourse)
       
       await fetch('https://docs.google.com/forms/d/e/1FAIpQLSfbj-NVyCmnsBQsxOValIxUxR9UK1jvSIrQUrF3r6RXHjXLXQ/formResponse', {
         method: 'POST',
