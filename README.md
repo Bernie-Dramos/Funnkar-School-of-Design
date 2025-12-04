@@ -85,7 +85,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the s
 │   └── utils.ts              # Utility functions (cn helper)
 ├── hooks/                    # Custom React hooks
 ├── public/                   # Static assets
-│   ├── LOGO.png              # Site logo (40x30)
+│   ├── fsd-logo.png          # Site logo (40x30)
 │   ├── instagram.png         # Instagram icon
 │   ├── linkedin.png          # LinkedIn icon
 │   └── whatsapp icon.png     # WhatsApp icon

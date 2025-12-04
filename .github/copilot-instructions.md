@@ -91,7 +91,7 @@ npx shadcn@latest add [component-name]
 import Image from "next/image"
 
 <Image 
-  src="/LOGO.png"          // Files in public/ are served from root
+  src="/fsd-logo.png"      // Files in public/ are served from root
   width={40} height={30}   // Logo dimensions: 40x30
   alt="..."                // Required for accessibility
 />
@@ -227,7 +227,7 @@ This is a static frontend. No:
 
 1. **CSS Variable Conflicts**: If styles don't apply, check if component overrides `--background` or other tokens
 2. **Client Component Errors**: If you see hydration errors, ensure `"use client"` is present
-3. **Image Paths**: Public assets accessed without `/public` prefix: `/LOGO.png` not `/public/LOGO.png`
+3. **Image Paths**: Public assets accessed without `/public` prefix: `/fsd-logo.png` not `/public/fsd-logo.png`
 4. **TypeScript Strict Mode**: Code may have type errors but builds succeed due to `ignoreBuildErrors: true`
 
 ## When Adding Features
