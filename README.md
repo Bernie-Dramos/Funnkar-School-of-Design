@@ -1,8 +1,8 @@
 # Funnkar School of Design
 
-> Transform your creative journey with expert guidance in design, branding, and UX/UI
+> Transform your creative journey with expert guidance in design, animation, and visual effects
 
-A modern, responsive marketing website showcasing design courses and programs offered by Funnkar School of Design. Built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4.
+A modern, responsive marketing website showcasing design courses and programs offered by Funnkar School of Design. Built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4 with a clean white and blue theme.
 
 ![Next.js](https://img.shields.io/badge/Next.js-16.0.3-black?style=flat-square&logo=next.js)
 ![React](https://img.shields.io/badge/React-19.2.0-61DAFB?style=flat-square&logo=react)
@@ -11,9 +11,10 @@ A modern, responsive marketing website showcasing design courses and programs of
 
 ## 🎨 Features
 
-- **Modern Design System** - OKLCH color space for perceptual uniformity
+- **Modern Design System** - OKLCH color space with blue and white theme
 - **Responsive Layout** - Mobile-first approach with breakpoint-optimized components
 - **Component Library** - 40+ pre-built shadcn/ui components (New York style)
+- **Interactive Application Form** - Modal form with date picker and course selection
 - **Fast Performance** - Turbopack bundler with optimized build times
 - **Accessible** - Built with Radix UI primitives for WCAG compliance
 - **Single Page Application** - Smooth anchor navigation between sections
