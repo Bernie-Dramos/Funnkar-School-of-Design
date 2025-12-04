@@ -83,7 +83,7 @@ const courses = [
     title: "Graphics Design",
     description: "Master InDesign, Illustrator, Lightroom, and Photoshop. 1-3 months core course with 6 month specialization program available.",
     level: "All Levels",
-    duration: "3-9 months",
+    duration: "3-6 months",
     benefits: ["1-3 months core course", "6 month specialization program", "Exclusive e-books & learning Resources", "Enrollment Benefits"],
     tools: ["Id", "Ai", "Lr", "Ps"],
     accentColor: "from-primary/30 to-primary/10",
