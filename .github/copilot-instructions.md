@@ -30,11 +30,10 @@ app/                    # Next.js App Router
 components/
   navigation.tsx        # Sticky header with mobile menu
   hero.tsx              # Hero section
-  features.tsx          # Features grid
-  courses.tsx           # Course cards
-  team.tsx              # Team member profiles
+  features.tsx          # Features grid (901px height)
+  courses.tsx           # Course cards with application form modal
   contact.tsx           # Contact form
-  footer.tsx            # Footer links
+  footer.tsx            # Footer with social links
   ui/                   # shadcn/ui components (DO NOT edit directly)
 ```
 
@@ -43,11 +42,11 @@ components/
 ### 2. Styling System
 
 #### CSS Variables (OKLCH Color Space)
-Theme colors defined in `app/globals.css` using OKLCH for perceptual uniformity:
+Theme colors defined in `app/globals.css` using OKLCH with a clean white and blue theme:
 ```css
 --background: oklch(0.20 0.04 250);  /* Dark navy blue */
---accent: oklch(0.65 0.19 35);       /* Orange accent */
---primary: oklch(0.35 0.12 264);     /* Primary blue */
+--primary: oklch(0.50 0.15 264);     /* Blue accent */
+--accent: oklch(0.50 0.15 264);      /* Blue (matches primary) */
 ```
 
 **Why OKLCH**: Better color consistency across light/dark themes. Don't use hex/rgb without converting.
@@ -93,12 +92,18 @@ import Image from "next/image"
 
 <Image 
   src="/LOGO.png"          // Files in public/ are served from root
-  width={32} height={32}   // Always specify dimensions
+  width={40} height={30}   // Logo dimensions: 40x30
   alt="..."                // Required for accessibility
 />
 ```
 
 **Config**: `images: { unoptimized: true }` in `next.config.mjs` - images not optimized during build (likely for static export).
+
+**Social Media Icons** (footer.tsx):
+- `/instagram.png` - Instagram icon (20x20)
+- `/linkedin.png` - LinkedIn icon (20x20)
+- `/whatsapp icon.png` - WhatsApp icon (20x20)
+- All use `Image` component with hover opacity transitions
 
 ### 5. Data Patterns
 
@@ -108,15 +113,24 @@ Course data hardcoded in components (see `components/courses.tsx`):
 const courses = [
   {
     id: 1,
-    title: "Graphics Design",
-    tools: ["Id", "Ai", "Lr", "Ps"],
-    accentColor: "from-accent/30 to-accent/10",
+    title: "Sketching and 2D Art",
+    level: "Beginner",
+    tools: ["Ps", "Ai", "Procreate"],
+    accentColor: "from-primary/25 to-primary/8",
     // ...
-  }
+  },
+  // 5 courses total: Sketching, 3D Modelling, 3D Animation, Graphics Design, VFX Diploma
 ]
 ```
 
 **Pattern**: No CMS or API. Content updates require code changes.
+
+**All Courses** (ordered by difficulty):
+1. Sketching and 2D Art (Beginner)
+2. 3D Modelling (Intermediate)
+3. 3D Animation (Intermediate)
+4. Graphics Design (Advanced)
+5. VFX Animation Diploma (Professional)
 
 ## Development Workflows
 
@@ -136,9 +150,22 @@ pnpm lint         # Run ESLint
 5. Use design system colors (no hardcoded hex)
 
 ### Typography & Fonts
-- **Geist** (sans) and **Geist Mono** loaded via `next/font/google`
-- Custom font: **Tonus Contrast** (bold) from `/public/fonts/` for branding
-- Applied via `style={{ fontFamily: 'Tonus Contrast, sans-serif' }}`
+- **Headings (h1-h6):** Poppins (regular, 400 weight) loaded via `next/font/google`
+- **Paragraphs:** Inter loaded via `next/font/google`
+- **Default:** Geist (sans) and **Geist Mono** loaded via `next/font/google`
+- **Brand:** Tonus Contrast (bold) from `/public/fonts/` for logo
+- Applied via CSS variables: `var(--font-poppins)`, `var(--font-inter)`
+- Global styles in `app/globals.css`:
+```css
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+p {
+  font-family: var(--font-inter), sans-serif;
+}
+```
 
 ### Navigation & Scroll
 Uses hash-based anchor navigation:
@@ -156,8 +183,10 @@ Uses hash-based anchor navigation:
 ### Design System Rules
 1. **Always use design tokens**: `bg-primary` not `bg-blue-500`
 2. **OKLCH color space**: When adding colors, use OKLCH format
-3. **Mobile-first**: Write mobile styles first, add `sm:`, `md:`, `lg:` breakpoints
-4. **Spacing scale**: Use Tailwind spacing (px-4, py-6, etc.)
+3. **Blue and white theme**: Primary color is blue (oklch 0.50 0.15 264), no orange
+4. **Mobile-first**: Write mobile styles first, add `sm:`, `md:`, `lg:` breakpoints
+5. **Spacing scale**: Use Tailwind spacing (px-4, py-6, etc.)
+6. **Typography**: Poppins for headings, Inter for paragraphs
 
 ### Component Library
 - Don't reinvent UI components - check `components/ui/` first
@@ -170,7 +199,19 @@ Uses hash-based anchor navigation:
 - **@vercel/analytics**: Analytics tracking (configured in layout)
 - **next-themes**: Dark/light mode support (provider in `components/theme-provider.tsx`)
 - **embla-carousel-react**: Carousel functionality
-- **react-hook-form** + **zod**: Form validation (if forms added)
+- **react-hook-form** + **zod**: Form validation
+- **date-fns**: Date formatting for application form
+
+### Application Form (courses.tsx)
+Interactive dialog modal with shadcn/ui components:
+- **Dialog**: Modal popup triggered by "Apply Now" button
+- **Form Fields**:
+  - First Name & Last Name (text inputs)
+  - Email (email input) & Phone Number (tel input)
+  - Date of Birth: 3 separate Select dropdowns (DD, MM, YYYY) with scrollable options
+  - Course Selection: Select dropdown populated from courses array
+- **State Management**: `useState` for form data and date values
+- **Submission**: Console logs data (ready for backend integration)
 
 ### No Backend
 This is a static frontend. No:
