@@ -89,14 +89,81 @@ export default function Courses() {
     { value: "12", label: "December" },
   ]
   const currentYear = new Date().getFullYear()
-  const years = Array.from({ length: 100 }, (_, i) => String(currentYear - i))
+  const years = Array.from({ length: 76 }, (_, i) => String(currentYear - i))
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const resetForm = () => {
+    setDay("")
+    setMonth("")
+    setYear("")
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      selectedCourse: "",
+    })
+  }
+
+  const handleOpenChange = (isOpen: boolean) => {
+    setOpen(isOpen)
+    if (!isOpen) {
+      resetForm()
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validate all fields are filled
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.selectedCourse) {
+      alert("Please fill in all fields")
+      return
+    }
+    
+    if (!day || !month || !year) {
+      alert("Please select your complete date of birth")
+      return
+    }
+    
     const dateOfBirth = `${day}/${month}/${year}`
-    console.log({ ...formData, dateOfBirth })
-    // Handle form submission here
-    setOpen(false)
+    const name = `${formData.firstName} ${formData.lastName}`
+    
+    // Prepare data for Google Sheets
+    const submissionData = {
+      Name: name,
+      Email: formData.email,
+      Number: formData.phone,
+      DOB: dateOfBirth,
+      Course: formData.selectedCourse,
+    }
+    
+    try {
+      // Send to Google Sheets using URLSearchParams
+      const formBody = new URLSearchParams({
+        Name: name,
+        Email: formData.email,
+        Number: formData.phone,
+        DOB: dateOfBirth,
+        Course: formData.selectedCourse,
+      })
+      
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzXTDUQcrFkpcRJXWpUz19yvhE2CNJDmAMqPo6kJAHN7ekdNGSGbdR0IdGaYgDwnxPkxw/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formBody.toString(),
+        redirect: 'follow',
+      })
+      
+      alert("Application submitted successfully!")
+      console.log("Form submitted:", submissionData)
+      resetForm()
+      setOpen(false)
+    } catch (error) {
+      console.error("Submission error:", error)
+      alert("There was an error submitting your application. Please try again.")
+    }
   }
 
   return (
@@ -156,7 +223,7 @@ export default function Courses() {
         </div>
 
         <div className="text-center mt-12 sm:mt-16">
-          <Dialog open={open} onOpenChange={setOpen}>
+          <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>
               <button className="px-8 sm:px-12 py-3 sm:py-4 bg-primary text-primary-foreground rounded-full font-bold hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/30 text-base sm:text-lg">
                 Apply Now
@@ -218,7 +285,7 @@ export default function Courses() {
                 <div className="space-y-2">
                   <Label>Date of Birth</Label>
                   <div className="flex gap-1">
-                    <Select value={day} onValueChange={setDay} required>
+                    <Select value={day} onValueChange={setDay}>
                       <SelectTrigger>
                         <SelectValue placeholder="DD" />
                       </SelectTrigger>
@@ -231,7 +298,7 @@ export default function Courses() {
                       </SelectContent>
                     </Select>
                     
-                    <Select value={month} onValueChange={setMonth} required>
+                    <Select value={month} onValueChange={setMonth}>
                       <SelectTrigger>
                         <SelectValue placeholder="MM" />
                       </SelectTrigger>
@@ -244,7 +311,7 @@ export default function Courses() {
                       </SelectContent>
                     </Select>
                     
-                    <Select value={year} onValueChange={setYear} required>
+                    <Select value={year} onValueChange={setYear}>
                       <SelectTrigger>
                         <SelectValue placeholder="YYYY" />
                       </SelectTrigger>
@@ -264,7 +331,6 @@ export default function Courses() {
                   <Select
                     value={formData.selectedCourse}
                     onValueChange={(value) => setFormData({ ...formData, selectedCourse: value })}
-                    required
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Choose a course" />
