@@ -2,15 +2,10 @@
 
 import { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { CalendarIcon } from "lucide-react"
-import { format } from "date-fns"
-import { cn } from "@/lib/utils"
 
 const courses = [
   {
@@ -47,7 +42,9 @@ const courses = [
 
 export default function Courses() {
   const [open, setOpen] = useState(false)
-  const [date, setDate] = useState<Date>()
+  const [day, setDay] = useState("")
+  const [month, setMonth] = useState("")
+  const [year, setYear] = useState("")
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -56,9 +53,28 @@ export default function Courses() {
     selectedCourse: "",
   })
 
+  const days = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, '0'))
+  const months = [
+    { value: "01", label: "January" },
+    { value: "02", label: "February" },
+    { value: "03", label: "March" },
+    { value: "04", label: "April" },
+    { value: "05", label: "May" },
+    { value: "06", label: "June" },
+    { value: "07", label: "July" },
+    { value: "08", label: "August" },
+    { value: "09", label: "September" },
+    { value: "10", label: "October" },
+    { value: "11", label: "November" },
+    { value: "12", label: "December" },
+  ]
+  const currentYear = new Date().getFullYear()
+  const years = Array.from({ length: 100 }, (_, i) => String(currentYear - i))
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log({ ...formData, dateOfBirth: date })
+    const dateOfBirth = `${day}/${month}/${year}`
+    console.log({ ...formData, dateOfBirth })
     // Handle form submission here
     setOpen(false)
   }
@@ -128,7 +144,7 @@ export default function Courses() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px]">
               <DialogHeader>
-                <DialogTitle className="text-2xl font-bold">Apply for Course</DialogTitle>
+                <DialogTitle className="text-2xl font-bold">Apply for a Course</DialogTitle>
               </DialogHeader>
               <form onSubmit={handleSubmit} className="space-y-6 mt-4">
                 <div className="grid grid-cols-2 gap-4">
@@ -181,28 +197,46 @@ export default function Courses() {
 
                 <div className="space-y-2">
                   <Label>Date of Birth</Label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          "w-full justify-start text-left font-normal",
-                          !date && "text-muted-foreground"
-                        )}
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {date ? format(date, "PPP") : <span>Pick a date</span>}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={date}
-                        onSelect={setDate}
-                        initialFocus
-                      />
-                    </PopoverContent>
-                  </Popover>
+                  <div className="grid grid-cols-3 gap-2">
+                    <Select value={day} onValueChange={setDay} required>
+                      <SelectTrigger>
+                        <SelectValue placeholder="DD" />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-[200px]">
+                        {days.map((d) => (
+                          <SelectItem key={d} value={d}>
+                            {d}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    
+                    <Select value={month} onValueChange={setMonth} required>
+                      <SelectTrigger>
+                        <SelectValue placeholder="MM" />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-[200px]">
+                        {months.map((m) => (
+                          <SelectItem key={m.value} value={m.value}>
+                            {m.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    
+                    <Select value={year} onValueChange={setYear} required>
+                      <SelectTrigger>
+                        <SelectValue placeholder="YYYY" />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-[200px]">
+                        {years.map((y) => (
+                          <SelectItem key={y} value={y}>
+                            {y}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
 
                 <div className="space-y-2">
