@@ -59,6 +59,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the s
 ### Forms & Validation
 - **[react-hook-form](https://react-hook-form.com/)** - Performant form handling
 - **[Zod](https://zod.dev/)** - TypeScript-first schema validation
+- **[date-fns](https://date-fns.org/)** - Date formatting and manipulation
 
 ### Additional Libraries
 - **[Embla Carousel](https://www.embla-carousel.com/)** - Carousel functionality
@@ -70,21 +71,26 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the s
 ```
 ├── app/
 │   ├── globals.css          # Tailwind config + CSS variables (OKLCH)
-│   ├── layout.tsx            # Root layout, metadata, fonts
+│   ├── layout.tsx            # Root layout, metadata, fonts (Poppins, Inter)
 │   └── page.tsx              # Main landing page
 ├── components/
 │   ├── navigation.tsx        # Sticky header with mobile menu
-│   ├── hero.tsx              # Hero section
-│   ├── features.tsx          # Features grid
-│   ├── courses.tsx           # Course cards
-│   ├── team.tsx              # Team member profiles
+│   ├── hero.tsx              # Hero section with blue theme
+│   ├── features.tsx          # Features grid (901px height)
+│   ├── courses.tsx           # Course cards with application form
 │   ├── contact.tsx           # Contact form
-│   ├── footer.tsx            # Footer links
+│   ├── footer.tsx            # Footer with social links (Instagram, LinkedIn, WhatsApp)
 │   └── ui/                   # shadcn/ui components (40+ files)
 ├── lib/
 │   └── utils.ts              # Utility functions (cn helper)
 ├── hooks/                    # Custom React hooks
-├── public/                   # Static assets (images, fonts)
+├── public/                   # Static assets
+│   ├── LOGO.png              # Site logo (40x30)
+│   ├── instagram.png         # Instagram icon
+│   ├── linkedin.png          # LinkedIn icon
+│   └── whatsapp icon.png     # WhatsApp icon
+├── .vscode/
+│   └── settings.json         # VS Code settings (CSS lint ignore)
 ├── components.json           # shadcn/ui configuration
 ├── next.config.mjs           # Next.js configuration
 ├── tailwind.config.ts        # Tailwind CSS configuration
@@ -94,18 +100,20 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the s
 ## 🎨 Design System
 
 ### Color Palette (OKLCH)
-The project uses OKLCH color space for better perceptual uniformity:
+The project uses OKLCH color space with a clean white and blue theme:
 
 ```css
 --background: oklch(0.20 0.04 250);  /* Dark navy blue */
---accent: oklch(0.65 0.19 35);       /* Orange accent */
---primary: oklch(0.35 0.12 264);     /* Primary blue */
+--primary: oklch(0.50 0.15 264);     /* Blue accent */
+--accent: oklch(0.50 0.15 264);      /* Blue (matching primary) */
 ```
 
 ### Typography
-- **Primary Font:** Geist (sans-serif)
+- **Headings (h1-h6):** Poppins (regular, 400 weight)
+- **Paragraphs:** Inter (body text)
+- **Default Font:** Geist (sans-serif)
 - **Monospace Font:** Geist Mono
-- **Brand Font:** Tonus Contrast (bold) - custom font for branding
+- **Brand Font:** Tonus Contrast (bold) - custom font for logo/branding
 
 ### Responsive Breakpoints
 ```
@@ -139,13 +147,19 @@ Sticky header with responsive mobile menu, smooth scroll navigation using hash a
 Full-height hero with gradient background, animated elements, and CTA buttons.
 
 ### Courses
-Grid of course cards with descriptions, durations, and tools:
-- Graphics Design (InDesign, Illustrator, Lightroom, Photoshop)
-- 2D Animation (Photoshop, After Effects, Premiere Pro, Animate)
-- 3D Modelling (Maya, 3ds Max)
+Grid of course cards with descriptions, durations, and tools (ordered by difficulty):
+1. **Sketching and 2D Art** (Beginner) - Photoshop, Illustrator, Procreate
+2. **3D Modelling** (Intermediate) - Maya, 3ds Max
+3. **3D Animation** (Intermediate) - Maya, Blender, MotionBuilder
+4. **Graphics Design** (Advanced) - InDesign, Illustrator, Lightroom, Photoshop
+5. **VFX Animation Diploma** (Professional) - After Effects, Nuke, Houdini, Premiere Pro
 
-### Team
-Profiles of coaches and instructors with images and expertise areas.
+### Application Form
+Interactive dialog modal with form fields:
+- First Name & Last Name
+- Email & Phone Number
+- Date of Birth (3 separate dropdowns: DD, MM, YYYY)
+- Course Selection dropdown
 
 ### Contact Form
 Form with validation for user inquiries (name, email, subject, message).
@@ -217,8 +231,10 @@ This is a private project. If you're part of the team and want to contribute:
 
 **Funnkar School of Design**
 
-- Website: [Coming Soon]
-- Email: [Contact Form on Site]
+- Email: funnkar.schoolofdesign@gmail.com
+- Phone: +91 9325167605 | +91 9209165351
+- WhatsApp: [+91 9325167605](https://wa.me/9325167605)
+- Location: Nashik, MH
 - GitHub: [@Bernie-Dramos](https://github.com/Bernie-Dramos)
 
 ---
