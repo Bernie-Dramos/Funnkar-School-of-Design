@@ -5,94 +5,59 @@ import Image from "next/image"
 
 export default function Footer() {
   return (
-    <footer className="bg-foreground/5 border-t border-border py-12 sm:py-16 md:py-20 px-4 sm:px-6">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-8 sm:mb-12">
+    <footer className="bg-[#0A1F2E] border-t border-border/20 py-12 sm:py-16 px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 mb-12">
+          {/* Left Column - Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-2 mb-4 hover:opacity-80 transition-opacity">
-              <Image src="/fsd-logo.png" alt="Funnkar School of Design" width={40} height={40}/>
-              <span className="text-base font-bold tracking-tight text-foreground" style={{ fontFamily: 'Tonus Contrast, sans-serif' }}>Funnkar School of Design</span>
-            </Link>
-            <p className="text-sm text-foreground/70">
+            <div className="flex items-center gap-2 mb-4">
+              <Image src="/fsd-logo.png" alt="Funnkar School of Design" width={32} height={24} className="h-6 w-auto"/>
+              <h3 className="text-lg font-bold text-white">Funnkar School of Design</h3>
+            </div>
+            <p className="text-sm text-white/70 leading-relaxed">
               Creating exceptional designers for the modern world through expert instruction and industry experience.
             </p>
           </div>
+
+          {/* Middle Column - Quick Links */}
           <div>
-            <h4 className="font-bold mb-4 text-foreground">Courses</h4>
-            <ul className="space-y-2 text-sm text-foreground/70">
+            <h4 className="text-base font-bold text-white mb-4">Quick Links</h4>
+            <ul className="space-y-3 text-sm text-white/70">
               <li>
-                <Link href="#courses" className="hover:text-accent transition">
-                  Sketching and 2D Art
+                <Link href="#hero" className="hover:text-white transition">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href="#courses" className="hover:text-accent transition">
-                  3D Modelling
+                <Link href="#courses" className="hover:text-white transition">
+                  Why Choose Us
                 </Link>
               </li>
               <li>
-                <Link href="#courses" className="hover:text-accent transition">
-                  Interior Design
-                </Link>
-              </li>
-              <li>
-                <Link href="#courses" className="hover:text-accent transition">
-                  Game Design
-                </Link>
-              </li>
-              <li>
-                <Link href="#courses" className="hover:text-accent transition">
-                  3D Animation
-                </Link>
-              </li>
-              <li>
-                <Link href="#courses" className="hover:text-accent transition">
-                  VFX Animation Diploma
-                </Link>
-              </li>
-              <li>
-                <Link href="#courses" className="hover:text-accent transition">
-                  Fine Arts
-                </Link>
-              </li>
-              <li>
-                <Link href="#courses" className="hover:text-accent transition">
-                  Graphics Design
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold mb-4 text-foreground">Company</h4>
-            <ul className="space-y-2 text-sm text-foreground/70">
-              <li>
-                <Link href="#hero" className="hover:text-accent transition">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="#courses" className="hover:text-accent transition">
+                <Link href="#courses" className="hover:text-white transition">
                   Courses
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="hover:text-accent transition">
-                  Contact
+                <Link href="#contact" className="hover:text-white transition">
+                  Contact Us
                 </Link>
               </li>
             </ul>
           </div>
+
+          {/* Right Column - Follow Us */}
           <div>
-            <h4 className="font-bold mb-4 text-foreground">Follow Us</h4>
+            <h4 className="text-base font-bold text-white mb-4">Follow Us</h4>
             <div className="flex gap-4 items-center">
-              <Link href="https://www.instagram.com/funnkar.school.of.design?igsh=OXhmdnZqcXdxemho" aria-label="Instagram" className="hover:opacity-80 transition">
-                <Image src="/instagram.svg" alt="Instagram" width={26} height={26} />
-              </Link>
               <Link href="https://www.linkedin.com/company/funnkarschoolofdesign/" aria-label="LinkedIn" className="hover:opacity-80 transition">
                 <Image src="/linkedin.svg" alt="LinkedIn" width={24} height={24} />
               </Link>
               <Link href="https://wa.me/9325167605" aria-label="WhatsApp" className="hover:opacity-80 transition">
-                <Image src="/whatsapp.svg" alt="WhatsApp" width={22} height={22} />
+                <Image src="/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
+              </Link>
+              <Link href="https://www.instagram.com/funnkar.school.of.design?igsh=OXhmdnZqcXdxemho" aria-label="Instagram" className="hover:opacity-80 transition">
+                <Image src="/instagram.svg" alt="Instagram" width={24} height={24} />
               </Link>
             </div>
           </div>
