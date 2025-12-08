@@ -45,7 +45,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the s
 ## 📦 Tech Stack
 
 ### Core Technologies
-- **[Next.js 16](https://nextjs.org/)** - React framework with App Router
+- **[Next.js 16.0.7](https://nextjs.org/)** - React framework with App Router
 - **[React 19](https://react.dev/)** - UI library with latest features
 - **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
 - **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework

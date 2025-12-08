@@ -210,7 +210,7 @@ export default function Courses() {
                 <span className="text-xs text-foreground/50 font-medium">{course.duration}</span>
               </div>
 
-              <h3 className="text-lg sm:text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+              <h3 className="text-lg sm:text-xl font-bold mb-3 group-hover:text-primary transition-colors font-poppins">
                 Learn {course.title}
               </h3>
               <p className="text-foreground/70 text-sm mb-5 line-clamp-3">{course.description}</p>
@@ -249,7 +249,7 @@ export default function Courses() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px]">
               <DialogHeader>
-                <DialogTitle className="text-2xl font-bold">Apply for a Course</DialogTitle>
+                <DialogTitle className="text-2xl font-bold font-poppins">Apply for a Course</DialogTitle>
               </DialogHeader>
               <form onSubmit={handleSubmit} className="space-y-6 mt-4">
                 <div className="grid grid-cols-2 gap-4">

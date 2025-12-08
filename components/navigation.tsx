@@ -9,49 +9,95 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 bg-background border-b border-border">
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 py-3 sm:py-4">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
+      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-9 sm:h-12 lg:h-15">
+          {/* Brand Name - Left side */}
+          <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity shrink-0">
             <Image
               src="/fsd-logo.png"
               alt="Funnkar School of Design"
-              width={40}
-              height={40}
-              className="h-8 w-8 sm:h-11 sm:w-11"
+              width={24}
+              height={18}
+              className="h-5 w-auto sm:h-6 lg:h-7"
             />
-            <span className="text-base sm:text-lg font-bold tracking-tight text-foreground hidden sm:inline" style={{ fontFamily: 'Tonus Contrast, sans-serif' }}>
-              Funnkar School of Design
+            <span className="text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-tight text-foreground">
+              Funnkar School Of Design
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="#hero" className="text-sm font-medium hover:text-primary transition-colors">
-              About
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden md:flex items-center justify-center gap-0.5 lg:gap-1 flex-1 mx-4">
+            <Link 
+              href="#hero" 
+              className="px-2 lg:px-3 py-1 text-[10px] lg:text-xs font-semibold text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all"
+            >
+              Home
             </Link>
-            <Link href="#courses" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link 
+              href="#courses" 
+              className="px-2 lg:px-3 py-1 text-[10px] lg:text-xs font-semibold text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all whitespace-nowrap"
+            >
+              Why Choose Us
+            </Link>
+            <Link 
+              href="#courses" 
+              className="px-2 lg:px-3 py-1 text-[10px] lg:text-xs font-semibold text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all"
+            >
               Courses
             </Link>
-            <Link href="#contact" className="text-sm font-medium hover:text-primary transition-colors">
-              Contact
+          </div>
+
+          {/* Desktop Contact Button - Right side */}
+          <div className="hidden md:flex items-center shrink-0">
+            <Link 
+              href="#contact" 
+              className="px-3 lg:px-4 py-1 lg:py-1.5 text-[10px] lg:text-xs font-semibold bg-white text-black rounded-full hover:bg-white/90 transition-all shadow-sm border border-border/20 whitespace-nowrap"
+            >
+              Contact Us
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          <button 
+            className="md:hidden p-1.5 hover:bg-accent/10 rounded-md transition-colors shrink-0" 
+            onClick={() => setIsOpen(!isOpen)} 
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={16} className="sm:w-5 sm:h-5" /> : <Menu size={16} className="sm:w-5 sm:h-5" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Dropdown */}
         {isOpen && (
-          <div className="mt-4 space-y-3 md:hidden pb-4">
-            <Link href="#courses" className="block text-sm font-medium hover:text-primary transition-colors">
+          <div className="md:hidden py-3 sm:py-4 space-y-1.5 sm:space-y-2 border-t border-border/50">
+            <Link 
+              href="#hero" 
+              className="block px-3 sm:px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all"
+              onClick={() => setIsOpen(false)}
+            >
+              Home
+            </Link>
+            <Link 
+              href="#courses" 
+              className="block px-3 sm:px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all"
+              onClick={() => setIsOpen(false)}
+            >
+              Why Choose Us
+            </Link>
+            <Link 
+              href="#courses" 
+              className="block px-3 sm:px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all"
+              onClick={() => setIsOpen(false)}
+            >
               Courses
             </Link>
-            <Link href="#contact" className="block text-sm font-medium hover:text-primary transition-colors">
-              Contact
+            <Link 
+              href="#contact" 
+              className="block mx-3 sm:mx-4 px-4 py-2 text-sm font-semibold text-center bg-white text-black rounded-full hover:bg-white/90 transition-all mt-2 sm:mt-3 border border-border/20"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact Us
             </Link>
           </div>
         )}

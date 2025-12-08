@@ -69,22 +69,22 @@ export default function Contact() {
             <div className="inline-block p-2 sm:p-3 rounded-xl bg-accent/10 mb-3 sm:mb-4">
               <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
             </div>
-            <h3 className="font-bold mb-2 text-sm sm:text-base">Email</h3>
+            <h3 className="font-bold mb-2 text-sm sm:text-base font-poppins">Email</h3>
             <p className="text-foreground/70 text-xs sm:text-sm break-all">funnkar.schoolofdesign@gmail.com</p>
           </div>
           <div className="text-center">
             <div className="inline-block p-2 sm:p-3 rounded-xl bg-accent/10 mb-3 sm:mb-4">
               <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
             </div>
-            <h3 className="font-bold mb-2 text-sm sm:text-base">Phone</h3>
-            <p className="text-foreground/70 text-xs sm:text-sm">+91 9325167605 | +91 9209165351</p>
+            <h3 className="font-bold mb-2 text-sm sm:text-base font-poppins">Phone</h3>
+            <p className="text-foreground/80 text-xs sm:text-sm">+91 9325167605 | +91 9209165351</p>
           </div>
           <div className="text-center">
             <div className="inline-block p-2 sm:p-3 rounded-xl bg-accent/10 mb-3 sm:mb-4">
               <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
             </div>
-            <h3 className="font-bold mb-2 text-sm sm:text-base">Location</h3>
-            <p className="text-foreground/70 text-xs sm:text-sm">Nashik, MH</p>
+            <h3 className="font-bold mb-2 text-sm sm:text-base font-poppins">Location</h3>
+            <p className="text-foreground/80 text-xs sm:text-sm">Nashik, MH</p>
           </div>
         </div>
 
