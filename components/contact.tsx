@@ -55,9 +55,11 @@ export default function Contact() {
     <section id="contact" className="py-12 sm:py-20 md:py-32 px-4 sm:px-6 bg-card/30 flex flex-col">
       <div className="mx-auto max-w-4xl w-full">
         <div className="text-center mb-8 sm:mb-12">
-          <button className="mb-6 sm:mb-8 px-6 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider hover:bg-primary/30 transition-all">
-            Get in Touch
-          </button>
+          <div className="inline-block mb-6 sm:mb-8 px-6 py-2 bg-linear-to-r from-[#071727] to-[#19538D] border border-primary/30 rounded-full">
+            <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-white">
+              Get in Touch
+            </span>
+          </div>
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-3 sm:mb-4 font-poppins">
             <span className="text-foreground">Discover & </span>
             <span className="text-primary">Define Your Future</span>
