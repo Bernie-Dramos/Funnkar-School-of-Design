@@ -184,13 +184,18 @@ export default function Courses() {
     try {
       const googleFormData = new FormData()
       
-      googleFormData.append('entry.1888045156', fullName)
-      googleFormData.append('entry.822288240', formData.email)
-      googleFormData.append('entry.499422658', formData.phone)
-      googleFormData.append('entry.2139661344_day', day)
-      googleFormData.append('entry.2139661344_month', month)
-      googleFormData.append('entry.2139661344_year', year)
+      googleFormData.append('entry.822288240', fullName)
+      googleFormData.append('entry.61734640', formData.email)
+      googleFormData.append('entry.1888045156', formData.phone)
+      googleFormData.append('entry.2139661344_year', year || '')
+      googleFormData.append('entry.2139661344_month', month || '')
+      googleFormData.append('entry.2139661344_day', day || '')
       googleFormData.append('entry.772600549', formData.selectedCourse)
+      googleFormData.append('entry.772600549_sentinel', '')
+      googleFormData.append('fvv', '1')
+      googleFormData.append('partialResponse', '[null,null,"8810687125528681974"]')
+      googleFormData.append('pageHistory', '0')
+      googleFormData.append('fbzx', '8810687125528681974')
       
       await fetch('https://docs.google.com/forms/d/e/1FAIpQLSe7Fjiba9pZB3S6s2N_64xvT9J1MrkK_ftXsTiEtqVHCIMzmg/formResponse', {
         method: 'POST',
