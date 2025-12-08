@@ -52,7 +52,7 @@ export default function Navigation() {
           <div className="hidden md:flex items-center shrink-0">
             <Link 
               href="#contact" 
-              className="px-3 lg:px-4 py-1 lg:py-1.5 text-[10px] lg:text-xs font-semibold bg-white text-black rounded-full hover:bg-white/90 transition-all shadow-sm border border-border/20 whitespace-nowrap"
+              className="px-3 lg:px-4 py-1 lg:py-1.5 text-[10px] lg:text-xs font-semibold bg-white text-primary rounded-full hover:scale-110 hover:shadow-lg hover:shadow-white/20 transition-all shadow-sm border border-border/20 whitespace-nowrap"
             >
               Contact Us
             </Link>

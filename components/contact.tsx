@@ -129,7 +129,7 @@ export default function Contact() {
           ></textarea>
           <button
             type="submit"
-            className="w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:bg-accent/90 transition-colors text-sm sm:text-base"
+            className="w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 transition-all text-sm sm:text-base cursor-pointer"
           >
             Send Message
           </button>

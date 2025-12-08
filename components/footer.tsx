@@ -24,22 +24,22 @@ export default function Footer() {
             <h4 className="text-base font-bold text-white mb-4">Quick Links</h4>
             <ul className="space-y-3 text-sm text-white/70">
               <li>
-                <Link href="#hero" className="hover:text-white transition">
+                <Link href="#hero" className="hover:text-foreground hover:bg-accent/10 rounded-md px-2 py-1 transition-all">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="#courses" className="hover:text-white transition">
+                <Link href="#courses" className="hover:text-foreground hover:bg-accent/10 rounded-md px-2 py-1 transition-all">
                   Why Choose Us
                 </Link>
               </li>
               <li>
-                <Link href="#courses" className="hover:text-white transition">
+                <Link href="#courses" className="hover:text-foreground hover:bg-accent/10 rounded-md px-2 py-1 transition-all">
                   Courses
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="hover:text-white transition">
+                <Link href="#contact" className="hover:text-foreground hover:bg-accent/10 rounded-md px-2 py-1 transition-all">
                   Contact Us
                 </Link>
               </li>
@@ -50,13 +50,13 @@ export default function Footer() {
           <div className="shrink-0 md:ml-60">
             <h4 className="text-base font-bold text-white mb-4">Follow Us</h4>
             <div className="flex gap-4 items-center">
-              <Link href="https://www.linkedin.com/company/funnkarschoolofdesign/" aria-label="LinkedIn" className="hover:opacity-80 transition">
+              <Link href="https://www.linkedin.com/company/funnkarschoolofdesign/" aria-label="LinkedIn" className="hover:opacity-90 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-1 transition-all">
                 <Image src="/linkedin.svg" alt="LinkedIn" width={15} height={15} />
               </Link>
-              <Link href="https://wa.me/9325167605" aria-label="WhatsApp" className="hover:opacity-80 transition">
+              <Link href="https://wa.me/9325167605" aria-label="WhatsApp" className="hover:opacity-90 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-1 transition-all">
                 <Image src="/whatsapp.svg" alt="WhatsApp" width={15} height={15} />
               </Link>
-              <Link href="https://www.instagram.com/funnkar.school.of.design?igsh=OXhmdnZqcXdxemho" aria-label="Instagram" className="hover:opacity-80 transition">
+              <Link href="https://www.instagram.com/funnkar.school.of.design?igsh=OXhmdnZqcXdxemho" aria-label="Instagram" className="hover:opacity-90 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-1 transition-all">
                 <Image src="/instagram.svg" alt="Instagram" width={15} height={15} />
               </Link>
             </div>

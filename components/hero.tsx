@@ -36,7 +36,7 @@ export default function Hero() {
           <Link href="#courses" className="px-8 sm:px-10 py-3 sm:py-4 bg-primary text-primary-foreground rounded-full font-bold hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/30 text-base sm:text-lg w-full sm:w-auto text-center">
             Explore Courses
           </Link>
-          <button className="px-8 sm:px-10 py-3 sm:py-4 border-2 border-foreground/40 rounded-full font-bold hover:border-primary hover:text-primary transition-all text-base sm:text-lg w-full sm:w-auto">
+          <button className="px-8 sm:px-10 py-3 sm:py-4 border-2 border-foreground/40 rounded-full font-bold hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all text-base sm:text-lg w-full sm:w-auto">
             Get Brochure
           </button>
         </div>

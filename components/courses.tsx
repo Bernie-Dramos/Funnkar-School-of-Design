@@ -184,13 +184,15 @@ export default function Courses() {
     try {
       const googleFormData = new FormData()
       
-      googleFormData.append('entry.433936759', fullName)
-      googleFormData.append('entry.1339288077', formData.email)
-      googleFormData.append('entry.1494324912', formData.phone)
-      googleFormData.append('entry.684334802', dateOfBirth)
-      googleFormData.append('entry.550490451', formData.selectedCourse)
+      googleFormData.append('entry.1888045156', fullName)
+      googleFormData.append('entry.822288240', formData.email)
+      googleFormData.append('entry.499422658', formData.phone)
+      googleFormData.append('entry.2139661344_day', day)
+      googleFormData.append('entry.2139661344_month', month)
+      googleFormData.append('entry.2139661344_year', year)
+      googleFormData.append('entry.772600549', formData.selectedCourse)
       
-      await fetch('https://docs.google.com/forms/d/e/1FAIpQLSfbj-NVyCmnsBQsxOValIxUxR9UK1jvSIrQUrF3r6RXHjXLXQ/formResponse', {
+      await fetch('https://docs.google.com/forms/d/e/1FAIpQLSe7Fjiba9pZB3S6s2N_64xvT9J1MrkK_ftXsTiEtqVHCIMzmg/formResponse', {
         method: 'POST',
         body: googleFormData,
         mode: 'no-cors'
@@ -226,7 +228,7 @@ export default function Courses() {
             return (
               <div
                 key={course.id}
-                className="w-[24rem] h-[400px] perspective-1000"
+                className="w-[24rem] h-[400px] perspective-1000 hover:-translate-y-2 transition-transform duration-300"
                 style={{ perspective: '1000px' }}
               >
                 <div
@@ -248,12 +250,9 @@ export default function Courses() {
                       className="w-full h-full border border-foreground/15 rounded-xl sm:rounded-2xl p-6 flex flex-col items-center justify-center relative bg-cover bg-center"
                       style={{ backgroundImage: `url(${course.image})` }}
                     >
-                      {/* Gradient overlay from top to bottom (transparent black to strong white) */}
+                      {/* Blue overlay at 50% opacity */}
                       <div 
-                        className="absolute inset-0 rounded-xl sm:rounded-2xl"
-                        style={{
-                          background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.8) 100%)'
-                        }}
+                        className="absolute inset-0 rounded-xl sm:rounded-2xl bg-primary/50"
                       ></div>
                       
                       {/* Badge at top */}
@@ -350,7 +349,7 @@ export default function Courses() {
               setFormData({ ...formData, selectedCourse: "" })
               setOpen(true)
             }}
-            className="px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-white/90 transition-all shadow-lg text-base border border-border/20"
+            className="px-8 py-4 bg-white text-primary rounded-full font-bold hover:bg-primary hover:text-primary-foreground hover:scale-110 hover:shadow-lg hover:shadow-white/20 transition-all shadow-lg text-base border border-border/20"
           >
             Apply Now
           </button>
