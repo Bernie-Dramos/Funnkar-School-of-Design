@@ -103,6 +103,11 @@ export default function Courses() {
     selectedCourse: "",
   })
 
+  const openApplicationForm = (courseTitle: string) => {
+    setFormData({ ...formData, selectedCourse: courseTitle })
+    setOpen(true)
+  }
+
   const days = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, '0'))
   const months = [
     { value: "01", label: "January" },
@@ -197,11 +202,11 @@ export default function Courses() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
           {courses.map((course) => (
             <div
               key={course.id}
-              className={`bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-5 sm:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 cursor-pointer`}
+              className={`bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-5 sm:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col w-[24rem]`}
             >
               <div className="flex items-start justify-between mb-4 sm:mb-5">
                 <span className="text-xs sm:text-sm font-bold text-primary uppercase tracking-wider">
@@ -228,30 +233,33 @@ export default function Courses() {
               </div>
 
               {course.tools && (
-                <div className="flex gap-2 mt-4 pt-4 border-t border-foreground/10">
-                  {course.tools.map((tool, idx) => (
-                    <div key={idx} className="px-2 py-1 bg-background/50 rounded text-xs font-bold">
-                      {tool}
-                    </div>
-                  ))}
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-foreground/10">
+                  <div className="flex gap-2">
+                    {course.tools.map((tool, idx) => (
+                      <div key={idx} className="px-2 py-1 bg-background/50 rounded text-xs font-bold">
+                        {tool}
+                      </div>
+                    ))}
+                  </div>
+                  <button 
+                    onClick={() => openApplicationForm(course.title)}
+                    className="px-2 py-1 bg-white text-black rounded-md font-semibold hover:bg-white/90 transition-all text-xs border border-border/20"
+                  >
+                    Apply Now
+                  </button>
                 </div>
               )}
             </div>
           ))}
         </div>
+      </div>
 
-        <div className="text-center mt-12 sm:mt-16">
-          <Dialog open={open} onOpenChange={handleOpenChange}>
-            <DialogTrigger asChild>
-              <button className="px-8 sm:px-12 py-3 sm:py-4 bg-primary text-primary-foreground rounded-full font-bold hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/30 text-base sm:text-lg">
-                Apply Now
-              </button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px]">
-              <DialogHeader>
-                <DialogTitle className="text-2xl font-bold font-poppins">Apply for a Course</DialogTitle>
-              </DialogHeader>
-              <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+      <Dialog open={open} onOpenChange={handleOpenChange}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold font-poppins">Apply for a Course</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="space-y-6 mt-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First Name</Label>
@@ -345,32 +353,20 @@ export default function Courses() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label>Select Course</Label>
-                  <Select
+                  <Label>Selected Course</Label>
+                  <Input
                     value={formData.selectedCourse}
-                    onValueChange={(value) => setFormData({ ...formData, selectedCourse: value })}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Choose a course" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {courses.map((course) => (
-                        <SelectItem key={course.id} value={course.title}>
-                          {course.title}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                    disabled
+                    className="bg-muted"
+                  />
                 </div>
 
-                <Button type="submit" className="w-full" size="lg">
-                  Submit Application
-                </Button>
-              </form>
-            </DialogContent>
-          </Dialog>
-        </div>
-      </div>
+            <Button type="submit" className="w-full" size="lg">
+              Submit Application
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }

@@ -35,7 +35,7 @@ export default function Navigation() {
               Home
             </Link>
             <Link 
-              href="#courses" 
+              href="#features" 
               className="px-2 lg:px-3 py-1 text-[10px] lg:text-xs font-semibold text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all whitespace-nowrap"
             >
               Why Choose Us

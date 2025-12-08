@@ -27,7 +27,7 @@ export default function Features() {
       <div className="mx-auto max-w-6xl w-full">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 text-balance tracking-tight">
-            Unlock Your <span className="text-primary">Design Potential</span>
+            Why <span className="text-primary">Choose Us</span>
           </h2>
           <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto">
             Our design programs offer comprehensive support to help you succeed in your creative career

@@ -55,9 +55,12 @@ export default function Contact() {
     <section id="contact" className="py-12 sm:py-20 md:py-32 px-4 sm:px-6 bg-card/30 flex flex-col">
       <div className="mx-auto max-w-4xl w-full">
         <div className="text-center mb-8 sm:mb-12">
-          <span className="text-xs sm:text-sm font-medium text-accent uppercase tracking-widest">Get in Touch</span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 sm:mt-3 mb-3 sm:mb-4">
-            Ready to Learn Something Amazing?
+          <button className="mb-6 sm:mb-8 px-6 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider hover:bg-primary/30 transition-all">
+            Get in Touch
+          </button>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-3 sm:mb-4 font-poppins">
+            <span className="text-foreground">Discover & </span>
+            <span className="text-primary">Define Your Future</span>
           </h2>
           <p className="text-sm sm:text-base text-foreground/60 px-2">
             Get in contact with us about any questions or inquiries you may have.
