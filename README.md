@@ -4,7 +4,7 @@
 
 A modern, responsive marketing website showcasing design courses and programs offered by Funnkar School of Design. Built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4 with a clean white and blue theme.
 
-![Next.js](https://img.shields.io/badge/Next.js-16.0.3-black?style=flat-square&logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-16.0.7-black?style=flat-square&logo=next.js)
 ![React](https://img.shields.io/badge/React-19.2.0-61DAFB?style=flat-square&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.9-38B2AC?style=flat-square&logo=tailwind-css)
@@ -12,10 +12,11 @@ A modern, responsive marketing website showcasing design courses and programs of
 ## 🎨 Features
 
 - **Modern Design System** - OKLCH color space with blue and white theme
-- **Responsive Layout** - Mobile-first approach with breakpoint-optimized components
-- **Component Library** - 40+ pre-built shadcn/ui components (New York style)
-- **Interactive Application Form** - Modal form with date picker and course selection
-- **Fast Performance** - Turbopack bundler with optimized build times
+- **Fully Responsive** - Mobile-first design optimized for all devices (320px - 2560px)
+- **Minimal Dependencies** - Only 14 essential packages (73% reduction from initial setup)
+- **Video Background** - Cyberpunk-themed hero section with autoplay video
+- **Google Forms Integration** - Application and contact forms with backend submission
+- **Fast Performance** - Next.js 16 with Turbopack, optimized production build
 - **Accessible** - Built with Radix UI primitives for WCAG compliance
 - **Single Page Application** - Smooth anchor navigation between sections
 
@@ -51,20 +52,15 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the s
 - **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework
 
 ### UI Components
-- **[shadcn/ui](https://ui.shadcn.com/)** - Re-usable component collection
+- **[shadcn/ui](https://ui.shadcn.com/)** - Component library (using Dialog, Select, Button, Input, Label only)
 - **[Radix UI](https://www.radix-ui.com/)** - Accessible component primitives
 - **[Lucide React](https://lucide.dev/)** - Icon library
 - **[class-variance-authority](https://cva.style/)** - Component variant management
 
-### Forms & Validation
-- **[react-hook-form](https://react-hook-form.com/)** - Performant form handling
-- **[Zod](https://zod.dev/)** - TypeScript-first schema validation
-- **[date-fns](https://date-fns.org/)** - Date formatting and manipulation
-
-### Additional Libraries
-- **[Embla Carousel](https://www.embla-carousel.com/)** - Carousel functionality
-- **[next-themes](https://github.com/pacocoursey/next-themes)** - Theme management
+### Data & Utilities
+- **[date-fns](https://date-fns.org/)** - Date formatting in application form
 - **[Vercel Analytics](https://vercel.com/analytics)** - Performance monitoring
+- **Google Forms** - Backend for application and contact form submissions
 
 ## 📁 Project Structure
 
@@ -74,26 +70,26 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the s
 │   ├── layout.tsx            # Root layout, metadata, fonts (Poppins, Inter)
 │   └── page.tsx              # Main landing page
 ├── components/
-│   ├── navigation.tsx        # Sticky header with mobile menu
-│   ├── hero.tsx              # Hero section with blue theme
-│   ├── features.tsx          # Features grid (901px height)
-│   ├── courses.tsx           # Course cards with application form
-│   ├── contact.tsx           # Contact form
-│   ├── footer.tsx            # Footer with social links (Instagram, LinkedIn, WhatsApp)
-│   └── ui/                   # shadcn/ui components (40+ files)
+│   ├── navigation.tsx        # Compact sticky header with centered nav links
+│   ├── hero.tsx              # Hero section with cyberpunk video background
+│   ├── features.tsx          # "Why Choose Us" features grid
+│   ├── courses.tsx           # 8 course cards with individual Apply Now buttons
+│   ├── contact.tsx           # Contact form with dramatic heading & Google Forms
+│   ├── footer.tsx            # 3-column footer (dark navy #0A1F2E)
+│   └── ui/                   # shadcn/ui components (40+ files, 5 actively used)
 ├── lib/
-│   └── utils.ts              # Utility functions (cn helper)
-├── hooks/                    # Custom React hooks
+│   └── utils.ts              # Utility functions (cn helper for class merging)
+├── hooks/
+│   ├── use-mobile.ts         # Mobile breakpoint detection hook
+│   └── use-toast.ts          # Toast notification hook
 ├── public/                   # Static assets
-│   ├── fsd-logo.png          # Site logo (40x30)
-│   ├── instagram.png         # Instagram icon
-│   ├── linkedin.png          # LinkedIn icon
-│   └── whatsapp icon.png     # WhatsApp icon
-├── .vscode/
-│   └── settings.json         # VS Code settings (CSS lint ignore)
+│   ├── fsd-logo.png          # Site logo (32x24)
+│   ├── cyberpunk-hero.mp4    # Hero background video
+│   ├── instagram.svg         # Instagram icon (15x15)
+│   ├── linkedin.svg          # LinkedIn icon (15x15)
+│   └── whatsapp.svg          # WhatsApp icon (15x15)
 ├── components.json           # shadcn/ui configuration
 ├── next.config.mjs           # Next.js configuration
-├── tailwind.config.ts        # Tailwind CSS configuration
 └── tsconfig.json             # TypeScript configuration
 ```
 
@@ -141,13 +137,32 @@ pnpm lint         # Run ESLint
 ## 📝 Key Components
 
 ### Navigation
-Sticky header with responsive mobile menu, smooth scroll navigation using hash anchors.
+Compact sticky header (h-9 to h-15 responsive) with:
+- Logo + brand name (left, with -ml-15 offset)
+- Centered navigation links (Home, Why Choose Us, Courses)
+- White Contact Us button (right-aligned, black text)
+- Mobile hamburger menu with dropdown
 
 ### Hero Section
-Full-height hero with gradient background, animated elements, and CTA buttons.
+Full-height hero with:
+- Autoplay cyberpunk video background (50% opacity)
+- "Unlock Your Design Potential" heading with Poppins font
+- Dual CTA buttons (Explore Courses, Get Brochure)
+
+### Features ("Why Choose Us")
+Sticky section (901px height) with 4-column grid:
+- Free Consultation
+- Career Support
+- Free Trial Access
+- Job Placement
 
 ### Courses
-Grid of course cards with descriptions, durations, and tools:
+8 course cards in responsive grid (w-[24rem] each) with:
+- Individual Apply Now buttons (white bg, black text)
+- Tools displayed at bottom left
+- Pre-selected course in application modal
+- Gradient accent colors for each card
+**All Courses:**
 1. **Sketching and 2D Art** (Beginner) - Photoshop, Illustrator, Procreate
 2. **3D Modelling** (Intermediate) - Maya, 3ds Max
 3. **Interior Design** (Intermediate) - SketchUp, AutoCAD, 3ds Max
@@ -158,14 +173,48 @@ Grid of course cards with descriptions, durations, and tools:
 8. **Graphics Design** (All Levels) - InDesign, Illustrator, Lightroom, Photoshop
 
 ### Application Form
-Interactive dialog modal with form fields:
-- First Name & Last Name
-- Email & Phone Number
-- Date of Birth (3 separate dropdowns: DD, MM, YYYY)
-- Course Selection dropdown
+Google Forms-integrated modal with:
+- First Name, Last Name, Email, Phone Number
+- Date of Birth (3 separate Select dropdowns: Day, Month, Year)
+- Course Selection (pre-populated when clicking Apply Now on a specific course)
+- Entry IDs: 1588074809 (firstName), 1808825635 (lastName), 1031876416 (email), 1638210572 (phoneNumber), 1732680046 (courseSelection)
 
-### Contact Form
-Form with validation for user inquiries (name, email, subject, message).
+### Contact Section
+Dramatic heading with:
+- "GET IN TOUCH" badge (linear gradient from-[#071727] to-[#19538D])
+- "Discover & Define Your Future" heading (text-4xl to text-7xl)
+- Contact cards for Email, Phone, Location
+- Google Forms integration (Entry IDs: 70361504, 1967203626, 754594676, 1917029081)
+
+### Footer
+3-column dark layout (bg-[#0A1F2E]) with:
+- Left: Logo + brand + description
+- Middle: Quick Links (centered with md:mx-auto)
+- Right: Follow Us social icons (positioned with md:ml-60)
+
+## 📊 Performance & Optimization
+
+### Bundle Size
+- **14 dependencies** (down from 51 - 73% reduction)
+- **node_modules:** ~80MB (down from ~250MB)
+- **Production build:** Optimized with Next.js 16 + Turbopack
+
+### Responsiveness
+All components fully tested and optimized for:
+- **Mobile:** 320px - 640px
+- **Tablet:** 640px - 1024px  
+- **Desktop:** 1024px - 2560px+
+
+Key responsive features:
+- Navbar scales from h-9 to h-15
+- Text sizes: text-[10px] to text-7xl across breakpoints
+- Course cards: stacked mobile → 24rem fixed width desktop
+- Footer: single column mobile → 3-column desktop
+
+### SEO & Meta
+- Optimized meta tags and Open Graph data
+- Favicon: `/fsd-logo.png`
+- Descriptive page title and description
 
 ## 🎯 Development Guidelines
 
