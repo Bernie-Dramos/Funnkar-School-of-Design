@@ -292,7 +292,13 @@ export default function Courses() {
                     <div className={`w-full h-full bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-5 sm:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col`}>
                       <div 
                         className="flex-1 cursor-pointer"
-                        onClick={() => toggleFlip(course.id)}
+                        onClick={(e) => {
+                          // Don't flip if clicking on a button element
+                          if ((e.target as HTMLElement).tagName === 'BUTTON') {
+                            return
+                          }
+                          toggleFlip(course.id)
+                        }}
                       >
                         <div className="flex items-start justify-between mb-4 sm:mb-5">
                           <span className="text-xs sm:text-sm font-bold text-primary uppercase tracking-wider">
@@ -319,7 +325,7 @@ export default function Courses() {
                         </div>
                       </div>
 
-                      {/* Footer with tools and Apply Now button */}
+                      {/* Footer with tools */}
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-foreground/10">
                         <div className="flex gap-2">
                           {course.tools.map((tool, idx) => (
@@ -328,18 +334,6 @@ export default function Courses() {
                             </div>
                           ))}
                         </div>
-
-                        {/* Stop propagation so the card does NOT flip when clicking the button */}
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation()           // this is the key line
-                            openApplicationForm(course.title)
-                          }}
-                          className="px-4 py-2 bg-white text-black rounded-md font-semibold hover:bg-white/90 transition-all text-xs border border-border/20"
-                        >
-                          Apply Now
-                        </button>
                       </div>
                     </div>
                   </div>
@@ -347,6 +341,19 @@ export default function Courses() {
               </div>
             )
           })}
+        </div>
+        
+        {/* Apply Now Section */}
+        <div className="mt-12 text-center">
+          <button
+            onClick={() => {
+              setFormData({ ...formData, selectedCourse: "" })
+              setOpen(true)
+            }}
+            className="px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-white/90 transition-all shadow-lg text-base border border-border/20"
+          >
+            Apply Now
+          </button>
         </div>
       </div>
 
@@ -449,12 +456,22 @@ export default function Courses() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label>Selected Course</Label>
-                  <Input
-                    value={formData.selectedCourse}
-                    disabled
-                    className="bg-muted"
-                  />
+                  <Label>Select Course</Label>
+                  <Select 
+                    value={formData.selectedCourse} 
+                    onValueChange={(value) => setFormData({ ...formData, selectedCourse: value })}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Choose a course" />
+                    </SelectTrigger>
+                    <SelectContent className="max-h-[200px]">
+                      {courses.map((course) => (
+                        <SelectItem key={course.id} value={course.title}>
+                          {course.title}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
 
             <Button type="submit" className="w-full" size="lg">
