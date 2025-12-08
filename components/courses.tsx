@@ -17,6 +17,7 @@ const courses = [
     benefits: ["1-3 months core course", "6 month specialization program", "Exclusive e-books & learning Resources", "Enrollment Benefits"],
     tools: ["Ps", "Ai", "Procreate"],
     accentColor: "from-primary/25 to-primary/8",
+    image: "/sketching-2d-art.jpg",
   },
   {
     id: 2,
@@ -27,6 +28,7 @@ const courses = [
     benefits: ["1-3 months core course", "6 month specialization program", "Exclusive e-books & learning Resources", "Enrollment Benefits"],
     tools: ["Maya", "3ds Max"],
     accentColor: "from-primary/20 to-primary/5",
+    image: "/3d-modelling.jpg",
   },
   {
     id: 3,
@@ -37,6 +39,7 @@ const courses = [
     benefits: ["Space planning", "3D visualization", "Exclusive e-books & learning Resources", "Real-world projects"],
     tools: ["SketchUp", "AutoCAD", "3ds Max"],
     accentColor: "from-primary/27 to-primary/11",
+    image: "/interior-design.jpg",
   },
   {
     id: 4,
@@ -47,6 +50,7 @@ const courses = [
     benefits: ["Game engine training", "Level design", "Exclusive e-books & learning Resources", "Portfolio projects"],
     tools: ["Unity", "Unreal", "Blender"],
     accentColor: "from-primary/26 to-primary/9",
+    image: "/game-design.jpg",
   },
   {
     id: 5,
@@ -57,6 +61,7 @@ const courses = [
     benefits: ["Advanced animation techniques", "Character rigging", "Exclusive e-books & learning Resources", "Demo reel creation"],
     tools: ["Maya", "Blender", "MotionBuilder"],
     accentColor: "from-primary/22 to-primary/6",
+    image: "/3d-animation.png",
   },
   {
     id: 6,
@@ -67,6 +72,7 @@ const courses = [
     benefits: ["Diploma certification", "Portfolio development", "Exclusive e-books & learning Resources", "Job placement assistance"],
     tools: ["Ae", "Nuke", "Houdini", "Pr"],
     accentColor: "from-primary/28 to-primary/12",
+    image: "/vfx-animation.jpg",
   },
   {
     id: 7,
@@ -77,6 +83,7 @@ const courses = [
     benefits: ["Traditional & digital techniques", "Portfolio development", "Exclusive e-books & learning Resources", "Exhibition opportunities"],
     tools: ["Ps", "Procreate", "Traditional Media"],
     accentColor: "from-primary/24 to-primary/7",
+    image: "/fine-arts.jpg",
   },
   {
     id: 8,
@@ -87,6 +94,7 @@ const courses = [
     benefits: ["1-3 months core course", "6 month specialization program", "Exclusive e-books & learning Resources", "Enrollment Benefits"],
     tools: ["Id", "Ai", "Lr", "Ps"],
     accentColor: "from-primary/30 to-primary/10",
+    image: "/graphics-design.jpg",
   },
 ]
 
@@ -236,21 +244,27 @@ export default function Courses() {
                     className="absolute inset-0 w-full h-full backface-hidden rounded-xl sm:rounded-2xl overflow-hidden"
                     style={{ backfaceVisibility: 'hidden' }}
                   >
-                    <div className={`w-full h-full bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-6 flex flex-col items-center justify-center relative`}>
+                    <div 
+                      className="w-full h-full border border-foreground/15 rounded-xl sm:rounded-2xl p-6 flex flex-col items-center justify-center relative bg-cover bg-center"
+                      style={{ backgroundImage: `url(${course.image})` }}
+                    >
+                      {/* Dark overlay for better text readability */}
+                      <div className="absolute inset-0 bg-black/40 rounded-xl sm:rounded-2xl"></div>
+                      
                       {/* Badge at top */}
-                      <div className="absolute top-4 left-4">
+                      <div className="absolute top-4 left-4 z-10">
                         <span className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider bg-[#071727] px-3 py-1 rounded-full">
                           {course.level}
                         </span>
                       </div>
-                      <div className="absolute top-4 right-4">
+                      <div className="absolute top-4 right-4 z-10">
                         <span className="text-xs text-black font-medium bg-white px-3 py-1 rounded-full">
                           {course.duration}
                         </span>
                       </div>
 
                       {/* Visual content - gradient badge at bottom */}
-                      <div className="absolute bottom-6 left-0 right-0">
+                      <div className="absolute bottom-6 left-0 right-0 z-10">
                         <div className="text-center px-6">
                           <div className="inline-block px-6 py-3 bg-linear-to-r from-[#071727] to-[#19538D] border border-primary/30 rounded-full">
                             <span className="text-sm sm:text-base font-semibold uppercase tracking-wider text-white">
