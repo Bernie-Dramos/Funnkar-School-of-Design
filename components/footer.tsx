@@ -12,7 +12,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Image src="/fsd-logo.png" alt="Funnkar School of Design" width={32} height={24} className="h-6 w-auto"/>
-              <h3 className="text-lg font-bold text-white">Funnkar School of Design</h3>
+              <h3 className="text-[15px] font-medium text-white font-poppins">Funnkar School of Design</h3>
             </div>
             <p className="text-sm text-white/70 leading-relaxed">
               Creating exceptional designers for the modern world through expert instruction and industry experience.

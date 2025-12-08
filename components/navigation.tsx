@@ -21,7 +21,7 @@ export default function Navigation() {
               height={18}
               className="h-5 w-auto sm:h-6 lg:h-7"
             />
-            <span className="text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-tight text-foreground">
+            <span className="text-[15px] font-medium tracking-tight text-foreground font-poppins">
               Funnkar School Of Design
             </span>
           </Link>
