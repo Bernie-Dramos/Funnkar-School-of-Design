@@ -1,20 +1,20 @@
 # Funnkar School of Design - AI Agent Instructions
 
 ## Project Overview
-Marketing website for Funnkar School of Design built with **Next.js 16 (App Router)**, React 19, TypeScript, and Tailwind CSS v4. Single-page application with component-based sections.
+Marketing website for Funnkar School of Design built with **Next.js 16.0.7 (App Router)**, React 19, TypeScript, and Tailwind CSS v4. Single-page application with component-based sections, video background hero, and Google Forms integration.
 
 ## Tech Stack Architecture
 
 ### Core Stack
-- **Next.js 16** with App Router (`app/` directory)
-- **React 19** (latest features enabled)
-- **TypeScript** (strict mode enabled but `ignoreBuildErrors: true` in config)
-- **Tailwind CSS v4** with CSS variables for theming
+- **Next.js 16.0.7** with App Router (`app/` directory) - Security patched
+- **React 19.2.0** (latest features enabled)
+- **TypeScript 5.x** (strict mode enabled but `ignoreBuildErrors: true` in config)
+- **Tailwind CSS v4.1.9** with CSS variables for theming
 - **pnpm** for package management
 
 ### UI Component System
-- **shadcn/ui** (New York style) - 40+ pre-built components in `components/ui/`
-- **Radix UI** primitives for accessible components
+- **shadcn/ui** (New York style) - 40+ pre-built components in `components/ui/` (5 actively used)
+- **Radix UI** primitives for accessible components (Dialog, Label, Select, Slot)
 - **Lucide React** for icons
 - **class-variance-authority** for variant management
 - Utility function: `cn()` in `lib/utils.ts` merges classes with tailwind-merge
@@ -28,13 +28,16 @@ app/                    # Next.js App Router
   layout.tsx            # Root layout, metadata, fonts
   globals.css           # Tailwind config + custom CSS variables
 components/
-  navigation.tsx        # Sticky header with mobile menu
-  hero.tsx              # Hero section
-  features.tsx          # Features grid (901px height)
-  courses.tsx           # Course cards with application form modal
-  contact.tsx           # Contact form
-  footer.tsx            # Footer with social links
+  navigation.tsx        # Compact sticky header (h-9 to h-15), centered nav, white Contact Us button
+  hero.tsx              # Hero with cyberpunk video background (opacity-50)
+  features.tsx          # "Why Choose Us" features grid (901px height)
+  courses.tsx           # 8 course cards with individual Apply Now buttons + Google Forms
+  contact.tsx           # Contact form with dramatic heading + Google Forms integration
+  footer.tsx            # 3-column dark footer (bg-[#0A1F2E])
   ui/                   # shadcn/ui components (DO NOT edit directly)
+hooks/
+  use-mobile.ts         # Mobile breakpoint detection
+  use-toast.ts          # Toast notification hook
 ```
 
 **Pattern**: Each section is a standalone client component (`"use client"`) imported into `page.tsx`. No routing beyond the single page.
@@ -86,24 +89,32 @@ npx shadcn@latest add [component-name]
 
 **DO NOT manually edit** files in `components/ui/` - they're managed by shadcn CLI.
 
-### 4. Image Handling
+### 4. Image & Video Handling
 ```tsx
 import Image from "next/image"
 
 <Image 
   src="/fsd-logo.png"      // Files in public/ are served from root
-  width={40} height={30}   // Logo dimensions: 40x30
+  width={32} height={24}   // Logo dimensions: 32x24
   alt="..."                // Required for accessibility
 />
 ```
 
 **Config**: `images: { unoptimized: true }` in `next.config.mjs` - images not optimized during build (likely for static export).
 
-**Social Media Icons** (footer.tsx):
-- `/instagram.png` - Instagram icon (20x20)
-- `/linkedin.png` - LinkedIn icon (20x20)
-- `/whatsapp icon.png` - WhatsApp icon (20x20)
-- All use `Image` component with hover opacity transitions
+**Assets in public/**:
+- `/fsd-logo.png` - Site logo (32x24) - used in navigation and footer
+- `/cyberpunk-hero.mp4` - Hero background video (autoplay, loop, muted, playsInline)
+- `/instagram.svg` - Instagram icon (15x15)
+- `/linkedin.svg` - LinkedIn icon (15x15)
+- `/whatsapp.svg` - WhatsApp icon (15x15)
+
+**Video Background** (hero.tsx):
+```tsx
+<video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-100">
+  <source src="/cyberpunk-hero.mp4" type="video/mp4" />
+</video>
+```
 
 ### 5. Data Patterns
 
@@ -176,12 +187,45 @@ Uses hash-based anchor navigation:
 <Link href="#courses">Courses</Link>  // Scrolls to <section id="courses">
 ```
 
+**Navbar Design (navigation.tsx)**:
+- Compact height: h-9 sm:h-12 lg:h-15
+- Logo + brand: Left-aligned with -ml-15 offset
+- Nav links: Centered with -ml-12 offset, text-[10px] lg:text-xs
+- Contact Us button: Right-aligned, white bg with black text, text-[10px] lg:text-xs
+- Mobile: Hamburger menu with dropdown
+
+**Footer Design (footer.tsx)**:
+- Background: bg-[#0A1F2E] (dark navy)
+- Layout: 3-column grid (md:grid-cols-3)
+- Left column: Logo (32x24) + brand + description
+- Middle column: Quick Links centered with md:mx-auto
+- Right column: Follow Us social icons positioned with md:ml-60
+- Social icons: 15x15px SVGs with hover:opacity-80
+
 ## Critical Constraints
 
 ### Build Configuration
 - **TypeScript errors ignored during build** - code may have type issues that won't fail CI
 - **Images unoptimized** - likely deploying as static site
 - No database, API routes, or dynamic data fetching
+
+### Responsive Design Requirements
+All components optimized for:
+- **Mobile:** 320px - 640px (text-[10px] to text-base)
+- **Tablet:** 640px - 1024px (text-sm to text-lg)
+- **Desktop:** 1024px+ (text-base to text-7xl)
+
+Key patterns:
+- Navbar: h-9 → h-12 → h-15 across breakpoints
+- Course cards: Full width mobile → w-[24rem] desktop with gap-6 sm:gap-7 lg:gap-8
+- Footer: Single column mobile → 3-column grid desktop
+- Text sizing: Progressive scaling (e.g., text-4xl sm:text-5xl md:text-6xl lg:text-7xl)
+
+### Performance Optimization
+- **Dependencies:** 14 packages (73% reduction from initial 51)
+- **Bundle size:** Optimized with tree-shaking
+- **Build time:** Fast with Turbopack bundler
+- **node_modules:** ~80MB (down from ~250MB)
 
 ### Design System Rules
 1. **Always use design tokens**: `bg-primary` not `bg-blue-500`
@@ -198,30 +242,48 @@ Uses hash-based anchor navigation:
 
 ## Integration Points
 
-### External Dependencies
+### External Dependencies (Optimized - 14 packages)
 - **@vercel/analytics**: Analytics tracking (configured in layout)
-- **next-themes**: Dark/light mode support (provider in `components/theme-provider.tsx`)
-- **embla-carousel-react**: Carousel functionality
-- **react-hook-form** + **zod**: Form validation
+- **@radix-ui/react-dialog**: Modal dialogs for application form
+- **@radix-ui/react-select**: Dropdown selects (date picker, course selection)
+- **@radix-ui/react-label**: Form labels
+- **@radix-ui/react-slot**: Composable component slots
 - **date-fns**: Date formatting for application form
+- **lucide-react**: Icon library (Menu, X, CheckCircle2, Mail, Phone, MapPin)
+- **Google Forms**: Backend for application and contact form submissions (no-cors mode)
 
 ### Application Form (courses.tsx)
-Interactive dialog modal with shadcn/ui components:
-- **Dialog**: Modal popup triggered by "Apply Now" button
+Interactive dialog modal with shadcn/ui components + Google Forms:
+- **Dialog**: Modal popup triggered by individual "Apply Now" buttons on course cards
+- **Pre-selection**: Clicking Apply Now on a course pre-selects that course in the form
 - **Form Fields**:
   - First Name & Last Name (text inputs)
   - Email (email input) & Phone Number (tel input)
-  - Date of Birth: 3 separate Select dropdowns (DD, MM, YYYY) with scrollable options
-  - Course Selection: Select dropdown populated from courses array
-- **State Management**: `useState` for form data and date values
-- **Submission**: Console logs data (ready for backend integration)
+  - Date of Birth: 3 separate Select dropdowns (Day, Month, Year) with scrollable options
+  - Course Selection: Disabled input showing pre-selected course
+- **State Management**: `useState` for form data, date values, and selectedCourse
+- **Google Forms Integration**:
+  - Entry IDs: 1588074809 (firstName), 1808825635 (lastName), 1031876416 (email), 1638210572 (phoneNumber), 1732680046 (courseSelection)
+  - Submission via fetch with mode: 'no-cors'
 
-### No Backend
-This is a static frontend. No:
-- API routes
-- Database connections
-- Authentication
-- Server-side rendering (SSR/SSG only)
+### Contact Form (contact.tsx)
+Google Forms-integrated contact form:
+- **Form Fields**: Name, Email, Subject, Message
+- **Google Forms Integration**:
+  - Entry IDs: 70361504 (name), 1967203626 (email), 754594676 (subject), 1917029081 (message)
+  - Form URL: https://docs.google.com/forms/d/e/1FAIpQLSfLx07W9TrvjnkqKzvp5iPTX7oL_26hYZKFjq67gHOmcYns6Q/formResponse
+  - Submission via fetch with mode: 'no-cors'
+- **Heading Design**:
+  - "GET IN TOUCH" badge with linear gradient (from-[#071727] to-[#19538D])
+  - "Discover & Define Your Future" heading (text-4xl to text-7xl)
+
+### Backend Integration
+Static frontend with Google Forms backend:
+- No API routes in Next.js
+- No database connections
+- No authentication
+- Forms submit to Google Sheets via Google Forms
+- Static export ready (SSG only)
 
 ## Common Gotchas
 
