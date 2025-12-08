@@ -339,7 +339,7 @@ export default function Courses() {
                             className="px-4 py-2 bg-white text-black rounded-md font-semibold hover:bg-white/90 transition-all text-xs border border-border/20 cursor-pointer"
                             type="button"
                           >
-                            Apply Now
+                            Apply
                           </button>
                         </div>
                       )}
