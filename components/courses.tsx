@@ -95,6 +95,7 @@ export default function Courses() {
   const [day, setDay] = useState("")
   const [month, setMonth] = useState("")
   const [year, setYear] = useState("")
+  const [flippedCards, setFlippedCards] = useState<number[]>([])
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -144,6 +145,14 @@ export default function Courses() {
     if (!isOpen) {
       resetForm()
     }
+  }
+
+  const toggleFlip = (courseId: number) => {
+    setFlippedCards(prev => 
+      prev.includes(courseId) 
+        ? prev.filter(id => id !== courseId)
+        : [...prev, courseId]
+    )
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -203,54 +212,115 @@ export default function Courses() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
-          {courses.map((course) => (
-            <div
-              key={course.id}
-              className={`bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-5 sm:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col w-[24rem]`}
-            >
-              <div className="flex items-start justify-between mb-4 sm:mb-5">
-                <span className="text-xs sm:text-sm font-bold text-primary uppercase tracking-wider">
-                  {course.level}
-                </span>
-                <span className="text-xs text-foreground/50 font-medium">{course.duration}</span>
-              </div>
-
-              <h3 className="text-lg sm:text-xl font-bold mb-3 group-hover:text-primary transition-colors font-poppins">
-                Learn {course.title}
-              </h3>
-              <p className="text-foreground/70 text-sm mb-5 line-clamp-3">{course.description}</p>
-
-              <div className="mb-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider mb-2">Enrollment Benefits</h4>
-                <ul className="space-y-1.5 text-xs text-foreground/70">
-                  {course.benefits.map((benefit, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <span className="text-primary mr-2">◆</span>
-                      <span>{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {course.tools && (
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-foreground/10">
-                  <div className="flex gap-2">
-                    {course.tools.map((tool, idx) => (
-                      <div key={idx} className="px-2 py-1 bg-background/50 rounded text-xs font-bold">
-                        {tool}
-                      </div>
-                    ))}
-                  </div>
-                  <button 
-                    onClick={() => openApplicationForm(course.title)}
-                    className="px-2 py-1 bg-white text-black rounded-md font-semibold hover:bg-white/90 transition-all text-xs border border-border/20"
+          {courses.map((course) => {
+            const isFlipped = flippedCards.includes(course.id)
+            
+            return (
+              <div
+                key={course.id}
+                className="w-[24rem] h-[400px] perspective-1000"
+                style={{ perspective: '1000px' }}
+              >
+                <div
+                  className={`relative w-full h-full transition-transform duration-700 transform-style-3d cursor-pointer ${
+                    isFlipped ? 'rotate-y-180' : ''
+                  }`}
+                  style={{ 
+                    transformStyle: 'preserve-3d',
+                    transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
+                  }}
+                  onClick={() => toggleFlip(course.id)}
+                >
+                  {/* Back of card - Visual/Image side (shown initially) */}
+                  <div
+                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl sm:rounded-2xl overflow-hidden"
+                    style={{ backfaceVisibility: 'hidden' }}
                   >
-                    Apply Now
-                  </button>
+                    <div className={`w-full h-full bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-6 flex flex-col items-center justify-center relative`}>
+                      {/* Badge at top */}
+                      <div className="absolute top-4 left-4">
+                        <span className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider bg-[#071727] px-3 py-1 rounded-full">
+                          {course.level}
+                        </span>
+                      </div>
+                      <div className="absolute top-4 right-4">
+                        <span className="text-xs text-black font-medium bg-white px-3 py-1 rounded-full">
+                          {course.duration}
+                        </span>
+                      </div>
+
+                      {/* Visual content - gradient badge at bottom */}
+                      <div className="absolute bottom-6 left-0 right-0">
+                        <div className="text-center px-6">
+                          <div className="inline-block px-6 py-3 bg-linear-to-r from-[#071727] to-[#19538D] border border-primary/30 rounded-full">
+                            <span className="text-sm sm:text-base font-semibold uppercase tracking-wider text-white">
+                              Learn {course.title}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Front of card - Course details (shown when flipped) */}
+                  <div
+                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl sm:rounded-2xl"
+                    style={{ 
+                      backfaceVisibility: 'hidden',
+                      transform: 'rotateY(180deg)'
+                    }}
+                  >
+                    <div className={`w-full h-full bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-5 sm:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col`}>
+                      <div className="flex items-start justify-between mb-4 sm:mb-5">
+                        <span className="text-xs sm:text-sm font-bold text-primary uppercase tracking-wider">
+                          {course.level}
+                        </span>
+                        <span className="text-xs text-foreground/50 font-medium">{course.duration}</span>
+                      </div>
+
+                      <h3 className="text-lg sm:text-xl font-bold mb-3 group-hover:text-primary transition-colors font-poppins">
+                        Learn {course.title}
+                      </h3>
+                      <p className="text-foreground/70 text-sm mb-5 line-clamp-3">{course.description}</p>
+
+                      <div className="mb-4">
+                        <h4 className="text-xs font-bold uppercase tracking-wider mb-2">Enrollment Benefits</h4>
+                        <ul className="space-y-1.5 text-xs text-foreground/70">
+                          {course.benefits.map((benefit, idx) => (
+                            <li key={idx} className="flex items-start">
+                              <span className="text-primary mr-2">◆</span>
+                              <span>{benefit}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {course.tools && (
+                        <div className="flex items-center justify-between mt-auto pt-4 border-t border-foreground/10">
+                          <div className="flex gap-2">
+                            {course.tools.map((tool, idx) => (
+                              <div key={idx} className="px-2 py-1 bg-background/50 rounded text-xs font-bold">
+                                {tool}
+                              </div>
+                            ))}
+                          </div>
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              openApplicationForm(course.title)
+                            }}
+                            className="px-2 py-1 bg-white text-black rounded-md font-semibold hover:bg-white/90 transition-all text-xs border border-border/20"
+                          >
+                            Apply Now
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            )
+          })}
         </div>
       </div>
 
