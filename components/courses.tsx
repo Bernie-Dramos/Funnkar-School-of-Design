@@ -289,9 +289,7 @@ export default function Courses() {
                       transform: 'rotateY(180deg)'
                     }}
                   >
-                    <div 
-                      className={`w-full h-full bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-5 sm:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col`}
-                    >
+                    <div className={`w-full h-full bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-5 sm:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col`}>
                       <div 
                         className="flex-1 cursor-pointer"
                         onClick={() => toggleFlip(course.id)}
@@ -321,28 +319,28 @@ export default function Courses() {
                         </div>
                       </div>
 
-                      {course.tools && (
-                        <div className="flex items-center justify-between mt-auto pt-4 border-t border-foreground/10">
-                          <div className="flex gap-2">
-                            {course.tools.map((tool, idx) => (
-                              <div key={idx} className="px-2 py-1 bg-background/50 rounded text-xs font-bold">
-                                {tool}
-                              </div>
-                            ))}
-                          </div>
-                          <button 
-                            onClick={() => {
-                              console.log("Button clicked for:", course.title)
-                              setFormData({ ...formData, selectedCourse: course.title })
-                              setOpen(true)
-                            }}
-                            className="px-4 py-2 bg-white text-black rounded-md font-semibold hover:bg-white/90 transition-all text-xs border border-border/20 cursor-pointer"
-                            type="button"
-                          >
-                            Apply
-                          </button>
+                      {/* Footer with tools and Apply Now button */}
+                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-foreground/10">
+                        <div className="flex gap-2">
+                          {course.tools.map((tool, idx) => (
+                            <div key={idx} className="px-2 py-1 bg-background/50 rounded text-xs font-bold">
+                              {tool}
+                            </div>
+                          ))}
                         </div>
-                      )}
+
+                        {/* Stop propagation so the card does NOT flip when clicking the button */}
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation()           // this is the key line
+                            openApplicationForm(course.title)
+                          }}
+                          className="px-4 py-2 bg-white text-black rounded-md font-semibold hover:bg-white/90 transition-all text-xs border border-border/20"
+                        >
+                          Apply Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
