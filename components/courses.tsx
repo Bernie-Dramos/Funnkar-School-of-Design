@@ -17,7 +17,7 @@ const courses = [
     benefits: ["1-3 months core course", "6 month specialization program", "Exclusive e-books & learning Resources", "Enrollment Benefits"],
     tools: ["Ps", "Ai", "Procreate"],
     accentColor: "from-primary/25 to-primary/8",
-    image: "/sketching-2d-art.jpg",
+    image: "/sketching-2d-art.png",
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const courses = [
     benefits: ["1-3 months core course", "6 month specialization program", "Exclusive e-books & learning Resources", "Enrollment Benefits"],
     tools: ["Maya", "3ds Max"],
     accentColor: "from-primary/20 to-primary/5",
-    image: "/3d-modelling.jpg",
+    image: "/3d-modelling.png",
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const courses = [
     benefits: ["Space planning", "3D visualization", "Exclusive e-books & learning Resources", "Real-world projects"],
     tools: ["SketchUp", "AutoCAD", "3ds Max"],
     accentColor: "from-primary/27 to-primary/11",
-    image: "/interior-design.jpg",
+    image: "/interior-design.png",
   },
   {
     id: 4,
@@ -50,7 +50,7 @@ const courses = [
     benefits: ["Game engine training", "Level design", "Exclusive e-books & learning Resources", "Portfolio projects"],
     tools: ["Unity", "Unreal", "Blender"],
     accentColor: "from-primary/26 to-primary/9",
-    image: "/game-design.jpg",
+    image: "/game-design.png",
   },
   {
     id: 5,
@@ -72,7 +72,7 @@ const courses = [
     benefits: ["Diploma certification", "Portfolio development", "Exclusive e-books & learning Resources", "Job placement assistance"],
     tools: ["Ae", "Nuke", "Houdini", "Pr"],
     accentColor: "from-primary/28 to-primary/12",
-    image: "/vfx-animation.jpg",
+    image: "/vfx-animation.png",
   },
   {
     id: 7,
@@ -83,7 +83,7 @@ const courses = [
     benefits: ["Traditional & digital techniques", "Portfolio development", "Exclusive e-books & learning Resources", "Exhibition opportunities"],
     tools: ["Ps", "Procreate", "Traditional Media"],
     accentColor: "from-primary/24 to-primary/7",
-    image: "/fine-arts.jpg",
+    image: "/fine-arts.png",
   },
   {
     id: 8,
@@ -94,7 +94,7 @@ const courses = [
     benefits: ["1-3 months core course", "6 month specialization program", "Exclusive e-books & learning Resources", "Enrollment Benefits"],
     tools: ["Id", "Ai", "Lr", "Ps"],
     accentColor: "from-primary/30 to-primary/10",
-    image: "/graphics-design.jpg",
+    image: "/graphics-design.png",
   },
 ]
 
@@ -255,11 +255,6 @@ export default function Courses() {
                       className="w-full h-full border border-foreground/15 rounded-xl sm:rounded-2xl p-6 flex flex-col items-center justify-center relative bg-cover bg-center"
                       style={{ backgroundImage: `url(${course.image})` }}
                     >
-                      {/* Blue overlay at 50% opacity */}
-                      <div 
-                        className="absolute inset-0 rounded-xl sm:rounded-2xl bg-primary/50"
-                      ></div>
-                      
                       {/* Badge at top */}
                       <div className="absolute top-4 left-4 z-10">
                         <span className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider bg-[#071727] px-3 py-1 rounded">
