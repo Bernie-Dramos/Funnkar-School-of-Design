@@ -13,7 +13,7 @@ export default function Navigation() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-9 sm:h-12 lg:h-15">
           {/* Brand Name - Left side */}
-          <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity shrink-0">
+          <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity shrink-0 -ml-15">
             <Image
               src="/fsd-logo.png"
               alt="Funnkar School of Design"
@@ -27,7 +27,7 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex items-center justify-center gap-0.5 lg:gap-1 flex-1 mx-4">
+          <div className="hidden md:flex items-center justify-center gap-0.5 lg:gap-1 flex-1 mx-4 -ml-12">
             <Link 
               href="#hero" 
               className="px-2 lg:px-3 py-1 text-[10px] lg:text-xs font-semibold text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all"

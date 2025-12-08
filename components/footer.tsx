@@ -19,8 +19,8 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Middle Column - Quick Links */}
-          <div>
+          {/* Middle Column - Quick Links (Centered) */}
+          <div className="shrink-0 md:mx-auto">
             <h4 className="text-base font-bold text-white mb-4">Quick Links</h4>
             <ul className="space-y-3 text-sm text-white/70">
               <li>
@@ -46,18 +46,18 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Right Column - Follow Us */}
-          <div>
+          {/* Right Column - Follow Us (Right aligned) */}
+          <div className="shrink-0 md:ml-60">
             <h4 className="text-base font-bold text-white mb-4">Follow Us</h4>
             <div className="flex gap-4 items-center">
               <Link href="https://www.linkedin.com/company/funnkarschoolofdesign/" aria-label="LinkedIn" className="hover:opacity-80 transition">
-                <Image src="/linkedin.svg" alt="LinkedIn" width={24} height={24} />
+                <Image src="/linkedin.svg" alt="LinkedIn" width={15} height={15} />
               </Link>
               <Link href="https://wa.me/9325167605" aria-label="WhatsApp" className="hover:opacity-80 transition">
-                <Image src="/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
+                <Image src="/whatsapp.svg" alt="WhatsApp" width={15} height={15} />
               </Link>
               <Link href="https://www.instagram.com/funnkar.school.of.design?igsh=OXhmdnZqcXdxemho" aria-label="Instagram" className="hover:opacity-80 transition">
-                <Image src="/instagram.svg" alt="Instagram" width={24} height={24} />
+                <Image src="/instagram.svg" alt="Instagram" width={15} height={15} />
               </Link>
             </div>
           </div>
