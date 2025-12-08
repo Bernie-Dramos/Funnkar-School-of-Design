@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+
 export default function Hero() {
   return (
     <section className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-linear-to-b from-background to-background/95">
@@ -20,12 +22,7 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center">
-        <div className="mb-6 sm:mb-8">
-          <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-widest text-primary mb-4">
-            Welcome to Funnkar School of Design
-          </span>
-        </div>
-
+        
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-4 sm:mb-6 text-balance leading-tight font-poppins">
           Unlock Your <span className="text-primary">Design Potential</span>
         </h1>
@@ -36,9 +33,9 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button className="px-8 sm:px-10 py-3 sm:py-4 bg-primary text-primary-foreground rounded-full font-bold hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/30 text-base sm:text-lg w-full sm:w-auto">
+          <Link href="#courses" className="px-8 sm:px-10 py-3 sm:py-4 bg-primary text-primary-foreground rounded-full font-bold hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/30 text-base sm:text-lg w-full sm:w-auto text-center">
             Explore Courses
-          </button>
+          </Link>
           <button className="px-8 sm:px-10 py-3 sm:py-4 border-2 border-foreground/40 rounded-full font-bold hover:border-primary hover:text-primary transition-all text-base sm:text-lg w-full sm:w-auto">
             Get Brochure
           </button>
