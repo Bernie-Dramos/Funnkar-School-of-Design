@@ -230,35 +230,40 @@ export default function Courses() {
                 style={{ perspective: '1000px' }}
               >
                 <div
-                  className={`relative w-full h-full transition-transform duration-700 transform-style-3d cursor-pointer ${
+                  className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${
                     isFlipped ? 'rotate-y-180' : ''
                   }`}
                   style={{ 
                     transformStyle: 'preserve-3d',
                     transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
                   }}
-                  onClick={() => toggleFlip(course.id)}
                 >
                   {/* Back of card - Visual/Image side (shown initially) */}
                   <div
-                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl sm:rounded-2xl overflow-hidden"
+                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer"
                     style={{ backfaceVisibility: 'hidden' }}
+                    onClick={() => toggleFlip(course.id)}
                   >
                     <div 
                       className="w-full h-full border border-foreground/15 rounded-xl sm:rounded-2xl p-6 flex flex-col items-center justify-center relative bg-cover bg-center"
                       style={{ backgroundImage: `url(${course.image})` }}
                     >
-                      {/* Dark overlay for better text readability */}
-                      <div className="absolute inset-0 bg-black/40 rounded-xl sm:rounded-2xl"></div>
+                      {/* Gradient overlay from top to bottom (transparent black to strong white) */}
+                      <div 
+                        className="absolute inset-0 rounded-xl sm:rounded-2xl"
+                        style={{
+                          background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.8) 100%)'
+                        }}
+                      ></div>
                       
                       {/* Badge at top */}
                       <div className="absolute top-4 left-4 z-10">
-                        <span className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider bg-[#071727] px-3 py-1 rounded-full">
+                        <span className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider bg-[#071727] px-3 py-1 rounded">
                           {course.level}
                         </span>
                       </div>
                       <div className="absolute top-4 right-4 z-10">
-                        <span className="text-xs text-black font-medium bg-white px-3 py-1 rounded-full">
+                        <span className="text-xs text-black font-medium bg-white px-3 py-1 rounded">
                           {course.duration}
                         </span>
                       </div>
@@ -266,7 +271,7 @@ export default function Courses() {
                       {/* Visual content - gradient badge at bottom */}
                       <div className="absolute bottom-6 left-0 right-0 z-10">
                         <div className="text-center px-6">
-                          <div className="inline-block px-6 py-3 bg-linear-to-r from-[#071727] to-[#19538D] border border-primary/30 rounded-full">
+                          <div className="inline-block px-6 py-3 bg-linear-to-r from-[#071727] to-[#19538D] border border-primary/30 rounded-lg">
                             <span className="text-sm sm:text-base font-semibold uppercase tracking-wider text-white">
                               Learn {course.title}
                             </span>
@@ -284,29 +289,36 @@ export default function Courses() {
                       transform: 'rotateY(180deg)'
                     }}
                   >
-                    <div className={`w-full h-full bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-5 sm:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col`}>
-                      <div className="flex items-start justify-between mb-4 sm:mb-5">
-                        <span className="text-xs sm:text-sm font-bold text-primary uppercase tracking-wider">
-                          {course.level}
-                        </span>
-                        <span className="text-xs text-foreground/50 font-medium">{course.duration}</span>
-                      </div>
+                    <div 
+                      className={`w-full h-full bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-5 sm:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col`}
+                    >
+                      <div 
+                        className="flex-1 cursor-pointer"
+                        onClick={() => toggleFlip(course.id)}
+                      >
+                        <div className="flex items-start justify-between mb-4 sm:mb-5">
+                          <span className="text-xs sm:text-sm font-bold text-primary uppercase tracking-wider">
+                            {course.level}
+                          </span>
+                          <span className="text-xs text-foreground/50 font-medium">{course.duration}</span>
+                        </div>
 
-                      <h3 className="text-lg sm:text-xl font-bold mb-3 group-hover:text-primary transition-colors font-poppins">
-                        Learn {course.title}
-                      </h3>
-                      <p className="text-foreground/70 text-sm mb-5 line-clamp-3">{course.description}</p>
+                        <h3 className="text-lg sm:text-xl font-bold mb-3 group-hover:text-primary transition-colors font-poppins">
+                          Learn {course.title}
+                        </h3>
+                        <p className="text-foreground/70 text-sm mb-5 line-clamp-3">{course.description}</p>
 
-                      <div className="mb-4">
-                        <h4 className="text-xs font-bold uppercase tracking-wider mb-2">Enrollment Benefits</h4>
-                        <ul className="space-y-1.5 text-xs text-foreground/70">
-                          {course.benefits.map((benefit, idx) => (
-                            <li key={idx} className="flex items-start">
-                              <span className="text-primary mr-2">◆</span>
-                              <span>{benefit}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        <div className="mb-4">
+                          <h4 className="text-xs font-bold uppercase tracking-wider mb-2">Enrollment Benefits</h4>
+                          <ul className="space-y-1.5 text-xs text-foreground/70">
+                            {course.benefits.map((benefit, idx) => (
+                              <li key={idx} className="flex items-start">
+                                <span className="text-primary mr-2">◆</span>
+                                <span>{benefit}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
 
                       {course.tools && (
@@ -319,11 +331,13 @@ export default function Courses() {
                             ))}
                           </div>
                           <button 
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              openApplicationForm(course.title)
+                            onClick={() => {
+                              console.log("Button clicked for:", course.title)
+                              setFormData({ ...formData, selectedCourse: course.title })
+                              setOpen(true)
                             }}
-                            className="px-2 py-1 bg-white text-black rounded-md font-semibold hover:bg-white/90 transition-all text-xs border border-border/20"
+                            className="px-4 py-2 bg-white text-black rounded-md font-semibold hover:bg-white/90 transition-all text-xs border border-border/20 cursor-pointer"
+                            type="button"
                           >
                             Apply Now
                           </button>
