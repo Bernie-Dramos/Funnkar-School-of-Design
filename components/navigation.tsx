@@ -15,7 +15,7 @@ export default function Navigation() {
           {/* Brand Name - Left side */}
           <Link href="/" className="flex items-center gap-1.5 sm:gap-2 hover:opacity-90 transition-opacity shrink-0 lg:-ml-15">
             <Image
-              src={`/fsd-logo.png?v=${Date.now()}`}
+              src="/fsd-logo.png"
               alt="Funnkar School of Design"
               width={24}
               height={18}
