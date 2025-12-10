@@ -15,11 +15,12 @@ export default function Navigation() {
           {/* Brand Name - Left side */}
           <Link href="/" className="flex items-center gap-1.5 sm:gap-2 hover:opacity-90 transition-opacity shrink-0 lg:-ml-15">
             <Image
-              src="/fsd-logo.png"
+              src={`/fsd-logo.png?v=${Date.now()}`}
               alt="Funnkar School of Design"
               width={24}
               height={18}
               className="h-4 w-auto sm:h-5 lg:h-7"
+              priority
             />
             <span className="text-[11px] sm:text-[13px] lg:text-[15px] font-medium tracking-tight text-foreground font-poppins whitespace-nowrap">
               Funnkar School Of Design
