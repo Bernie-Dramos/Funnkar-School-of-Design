@@ -13,15 +13,15 @@ export default function Navigation() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-9 sm:h-12 lg:h-15">
           {/* Brand Name - Left side */}
-          <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity shrink-0 -ml-15">
+          <Link href="/" className="flex items-center gap-1.5 sm:gap-2 hover:opacity-90 transition-opacity shrink-0 lg:-ml-15">
             <Image
               src="/fsd-logo.png"
               alt="Funnkar School of Design"
               width={24}
               height={18}
-              className="h-5 w-auto sm:h-6 lg:h-7"
+              className="h-4 w-auto sm:h-5 lg:h-7"
             />
-            <span className="text-[15px] font-medium tracking-tight text-foreground font-poppins">
+            <span className="text-[11px] sm:text-[13px] lg:text-[15px] font-medium tracking-tight text-foreground font-poppins whitespace-nowrap">
               Funnkar School Of Design
             </span>
           </Link>
