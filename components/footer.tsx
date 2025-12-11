@@ -47,8 +47,8 @@ export default function Footer() {
           </div>
 
           {/* Right Column - Follow Us (Right aligned) */}
-          <div className="shrink-0 md:ml-60">
-            <h4 className="text-base font-bold text-white mb-4">Follow Us</h4>
+          <div className="shrink-0 md:ml-auto lg:ml-60">
+            <h4 className="text-base font-bold text-white mb-4 whitespace-nowrap">Follow Us</h4>
             <div className="flex gap-4 items-center">
               <Link href="https://www.linkedin.com/company/funnkarschoolofdesign/" aria-label="LinkedIn" className="hover:opacity-90 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-1 transition-all">
                 <Image src="/linkedin.svg" alt="LinkedIn" width={15} height={15} />
