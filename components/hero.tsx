@@ -23,22 +23,22 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center">
         
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-4 sm:mb-6 text-balance leading-tight font-poppins">
-          Unlock Your <span className="text-primary">Design Potential</span>
+        <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-4 sm:mb-6 text-balance leading-tight font-poppins">
+          Unlock Your <span className="text-primary whitespace-nowrap">Design Potential</span>
         </h1>
 
-        <p className="text-lg sm:text-xl text-foreground/80 max-w-3xl mx-auto mb-8 sm:mb-12 text-pretty leading-relaxed font-light">
+        <p className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-8 sm:mb-12 text-pretty leading-relaxed font-light">
           Our design programs offer free consultation, career support, free trial access, and job placement assistance.
           Transform your creative journey with expert guidance.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link href="#courses" className="px-8 sm:px-10 py-3 sm:py-4 bg-primary text-primary-foreground rounded-full font-bold hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/30 text-base sm:text-lg w-full sm:w-auto text-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-2">
+          <Link href="#courses" className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-primary text-primary-foreground rounded-full font-bold hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/30 text-sm sm:text-base md:text-lg w-full sm:w-auto text-center">
             Explore Courses
           </Link>
-          <button className="px-8 sm:px-10 py-3 sm:py-4 border-2 border-foreground/40 rounded-full font-bold hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all text-base sm:text-lg w-full sm:w-auto">
+          <Link href="https://drive.google.com/drive/folders/1wQoB3ZE5nJu9UR24QhMWpPNj8NMszD4H?usp=drive_link" target="_blank" rel="noopener noreferrer" className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 border-2 border-foreground/40 rounded-full font-bold hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all text-sm sm:text-base md:text-lg w-full sm:w-auto text-center">
             Get Brochure
-          </button>
+          </Link>
         </div>
       </div>
     </section>

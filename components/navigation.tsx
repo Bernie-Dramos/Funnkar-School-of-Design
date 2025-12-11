@@ -80,7 +80,7 @@ export default function Navigation() {
               Home
             </Link>
             <Link 
-              href="#courses" 
+              href="#features" 
               className="block px-3 sm:px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all"
               onClick={() => setIsOpen(false)}
             >

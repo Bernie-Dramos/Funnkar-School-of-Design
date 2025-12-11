@@ -29,7 +29,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#courses" className="hover:text-foreground hover:bg-accent/10 rounded-md px-2 py-1 transition-all">
+                <Link href="#features" className="hover:text-foreground hover:bg-accent/10 rounded-md px-2 py-1 transition-all">
                   Why Choose Us
                 </Link>
               </li>

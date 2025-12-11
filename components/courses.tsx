@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
+// Cache-busting version for course images (update manually when images change)
+const IMAGE_VERSION = "v2"
+
 const courses = [
   {
     id: 1,
@@ -17,7 +20,7 @@ const courses = [
     benefits: ["1-3 months core course", "6 month specialization program", "Exclusive e-books & learning Resources", "Enrollment Benefits"],
     tools: ["Ps", "Ai", "Procreate"],
     accentColor: "from-primary/25 to-primary/8",
-    image: "/sketching-2d-art.png",
+    image: `/sketching-2d-art.png?v=${IMAGE_VERSION}`,
   },
   {
     id: 2,
@@ -28,7 +31,7 @@ const courses = [
     benefits: ["1-3 months core course", "6 month specialization program", "Exclusive e-books & learning Resources", "Enrollment Benefits"],
     tools: ["Maya", "3ds Max"],
     accentColor: "from-primary/20 to-primary/5",
-    image: "/3d-modelling.png",
+    image: `/3d-modelling.png?v=${IMAGE_VERSION}`,
   },
   {
     id: 3,
@@ -39,7 +42,7 @@ const courses = [
     benefits: ["Space planning", "3D visualization", "Exclusive e-books & learning Resources", "Real-world projects"],
     tools: ["SketchUp", "AutoCAD", "3ds Max"],
     accentColor: "from-primary/27 to-primary/11",
-    image: "/interior-design.png",
+    image: `/interior-design.png?v=${IMAGE_VERSION}`,
   },
   {
     id: 4,
@@ -50,7 +53,7 @@ const courses = [
     benefits: ["Game engine training", "Level design", "Exclusive e-books & learning Resources", "Portfolio projects"],
     tools: ["Unity", "Unreal", "Blender"],
     accentColor: "from-primary/26 to-primary/9",
-    image: "/game-design.png",
+    image: `/game-design.png?v=${IMAGE_VERSION}`,
   },
   {
     id: 5,
@@ -61,7 +64,7 @@ const courses = [
     benefits: ["Advanced animation techniques", "Character rigging", "Exclusive e-books & learning Resources", "Demo reel creation"],
     tools: ["Maya", "Blender", "MotionBuilder"],
     accentColor: "from-primary/22 to-primary/6",
-    image: "/3d-animation.png",
+    image: `/3d-animation.png?v=${IMAGE_VERSION}`,
   },
   {
     id: 6,
@@ -72,7 +75,7 @@ const courses = [
     benefits: ["Diploma certification", "Portfolio development", "Exclusive e-books & learning Resources", "Job placement assistance"],
     tools: ["Ae", "Nuke", "Houdini", "Pr"],
     accentColor: "from-primary/28 to-primary/12",
-    image: "/vfx-animation.png",
+    image: `/vfx-animation.png?v=${IMAGE_VERSION}`,
   },
   {
     id: 7,
@@ -83,7 +86,7 @@ const courses = [
     benefits: ["Traditional & digital techniques", "Portfolio development", "Exclusive e-books & learning Resources", "Exhibition opportunities"],
     tools: ["Ps", "Procreate", "Traditional Media"],
     accentColor: "from-primary/24 to-primary/7",
-    image: "/fine-arts.png",
+    image: `/fine-arts.png?v=${IMAGE_VERSION}`,
   },
   {
     id: 8,
@@ -94,7 +97,7 @@ const courses = [
     benefits: ["1-3 months core course", "6 month specialization program", "Exclusive e-books & learning Resources", "Enrollment Benefits"],
     tools: ["Id", "Ai", "Lr", "Ps"],
     accentColor: "from-primary/30 to-primary/10",
-    image: "/graphics-design.png",
+    image: `/graphics-design.png?v=${IMAGE_VERSION}`,
   },
 ]
 
@@ -226,14 +229,14 @@ export default function Courses() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 px-2 sm:px-0">
           {courses.map((course) => {
             const isFlipped = flippedCards.includes(course.id)
             
             return (
               <div
                 key={course.id}
-                className="w-[24rem] h-[400px] perspective-1000 hover:-translate-y-2 transition-transform duration-300"
+                className="w-full max-w-[22rem] mx-auto sm:w-[20rem] lg:w-[24rem] h-[350px] sm:h-[380px] lg:h-[400px] perspective-1000 hover:-translate-y-2 transition-transform duration-300"
                 style={{ perspective: '1000px' }}
               >
                 <div
@@ -242,36 +245,45 @@ export default function Courses() {
                   }`}
                   style={{ 
                     transformStyle: 'preserve-3d',
+                    WebkitTransformStyle: 'preserve-3d',
                     transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
                   }}
                 >
                   {/* Back of card - Visual/Image side (shown initially) */}
                   <div
                     className="absolute inset-0 w-full h-full backface-hidden rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer"
-                    style={{ backfaceVisibility: 'hidden' }}
+                    style={{ 
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden'
+                    }}
                     onClick={() => toggleFlip(course.id)}
                   >
                     <div 
-                      className="w-full h-full border border-foreground/15 rounded-xl sm:rounded-2xl p-6 flex flex-col items-center justify-center relative bg-cover bg-center"
+                      className="w-full h-full border border-foreground/15 rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center relative bg-cover bg-center"
                       style={{ backgroundImage: `url(${course.image})` }}
                     >
+                      {/* Blue overlay at 50% opacity */}
+                      <div 
+                        className="absolute inset-0 rounded-xl sm:rounded-2xl bg-primary/50"
+                      ></div>
+                      
                       {/* Badge at top */}
-                      <div className="absolute top-4 left-4 z-10">
-                        <span className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider bg-[#071727] px-3 py-1 rounded">
+                      <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-10">
+                        <span className="text-[10px] sm:text-xs font-bold text-white uppercase tracking-wider bg-[#071727] px-2 sm:px-3 py-0.5 sm:py-1 rounded">
                           {course.level}
                         </span>
                       </div>
-                      <div className="absolute top-4 right-4 z-10">
-                        <span className="text-xs text-black font-medium bg-white px-3 py-1 rounded">
+                      <div className="absolute top-2 sm:top-4 right-2 sm:right-4 z-10">
+                        <span className="text-[10px] sm:text-xs text-black font-medium bg-white px-2 sm:px-3 py-0.5 sm:py-1 rounded">
                           {course.duration}
                         </span>
                       </div>
 
                       {/* Visual content - gradient badge at bottom */}
-                      <div className="absolute bottom-6 left-0 right-0 z-10">
-                        <div className="text-center px-6">
-                          <div className="inline-block px-6 py-3 bg-linear-to-r from-[#071727] to-[#19538D] border border-primary/30 rounded-lg">
-                            <span className="text-sm sm:text-base font-semibold uppercase tracking-wider text-white">
+                      <div className="absolute bottom-4 sm:bottom-6 left-0 right-0 z-10">
+                        <div className="text-center px-3 sm:px-6">
+                          <div className="inline-block px-3 sm:px-6 py-2 sm:py-3 bg-linear-to-r from-[#071727] to-[#19538D] border border-primary/30 rounded-lg">
+                            <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-white">
                               Learn {course.title}
                             </span>
                           </div>
@@ -285,10 +297,11 @@ export default function Courses() {
                     className="absolute inset-0 w-full h-full backface-hidden rounded-xl sm:rounded-2xl"
                     style={{ 
                       backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)'
                     }}
                   >
-                    <div className={`w-full h-full bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-5 sm:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col`}>
+                    <div className={`w-full h-full bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col`}>
                       <div 
                         className="flex-1 cursor-pointer"
                         onClick={(e) => {
@@ -299,21 +312,21 @@ export default function Courses() {
                           toggleFlip(course.id)
                         }}
                       >
-                        <div className="flex items-start justify-between mb-4 sm:mb-5">
-                          <span className="text-xs sm:text-sm font-bold text-primary uppercase tracking-wider">
+                        <div className="flex items-start justify-between mb-3 sm:mb-4">
+                          <span className="text-[10px] sm:text-xs font-bold text-primary uppercase tracking-wider">
                             {course.level}
                           </span>
-                          <span className="text-xs text-foreground/50 font-medium">{course.duration}</span>
+                          <span className="text-[10px] sm:text-xs text-foreground/50 font-medium">{course.duration}</span>
                         </div>
 
-                        <h3 className="text-lg sm:text-xl font-bold mb-3 group-hover:text-primary transition-colors font-poppins">
+                        <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-3 group-hover:text-primary transition-colors font-poppins">
                           Learn {course.title}
                         </h3>
-                        <p className="text-foreground/70 text-sm mb-5 line-clamp-3">{course.description}</p>
+                        <p className="text-foreground/70 text-xs sm:text-sm mb-3 sm:mb-5 line-clamp-3">{course.description}</p>
 
-                        <div className="mb-4">
-                          <h4 className="text-xs font-bold uppercase tracking-wider mb-2">Enrollment Benefits</h4>
-                          <ul className="space-y-1.5 text-xs text-foreground/70">
+                        <div className="mb-3 sm:mb-4">
+                          <h4 className="text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1.5 sm:mb-2">Enrollment Benefits</h4>
+                          <ul className="space-y-1 sm:space-y-1.5 text-[10px] sm:text-xs text-foreground/70">
                             {course.benefits.map((benefit, idx) => (
                               <li key={idx} className="flex items-start">
                                 <span className="text-primary mr-2">◆</span>
@@ -325,10 +338,10 @@ export default function Courses() {
                       </div>
 
                       {/* Footer with tools */}
-                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-foreground/10">
-                        <div className="flex gap-2">
+                      <div className="flex items-center justify-between mt-auto pt-3 sm:pt-4 border-t border-foreground/10">
+                        <div className="flex gap-1.5 sm:gap-2">
                           {course.tools.map((tool, idx) => (
-                            <div key={idx} className="px-2 py-1 bg-background/50 rounded text-xs font-bold">
+                            <div key={idx} className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-background/50 rounded text-[10px] sm:text-xs font-bold">
                               {tool}
                             </div>
                           ))}
@@ -343,13 +356,13 @@ export default function Courses() {
         </div>
         
         {/* Apply Now Section */}
-        <div className="mt-12 text-center">
+        <div className="mt-8 sm:mt-12 text-center">
           <button
             onClick={() => {
               setFormData({ ...formData, selectedCourse: "" })
               setOpen(true)
             }}
-            className="px-8 py-4 bg-white text-primary rounded-full font-bold hover:bg-primary hover:text-primary-foreground hover:scale-110 hover:shadow-lg hover:shadow-white/20 transition-all shadow-lg text-base border border-border/20"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-primary rounded-full font-bold hover:bg-primary hover:text-primary-foreground hover:scale-110 hover:shadow-lg hover:shadow-white/20 transition-all shadow-lg text-sm sm:text-base border border-border/20"
           >
             Apply Now
           </button>
