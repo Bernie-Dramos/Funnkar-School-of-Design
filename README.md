@@ -39,9 +39,20 @@ pnpm install
 
 # Start development server
 pnpm dev
+
+# Build for production (static export)
+pnpm build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to see the site.
+
+### Deployment
+
+The site is configured for **static export** and deployed on **Netlify**:
+- Build command: `pnpm build`
+- Publish directory: `out`
+- No serverless functions required
+- Live site: [funnkarschoolofdesign.com](https://funnkarschoolofdesign.com)
 
 ## 📦 Tech Stack
 
@@ -70,11 +81,11 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the s
 │   ├── layout.tsx            # Root layout, metadata, fonts (Poppins, Inter)
 │   └── page.tsx              # Main landing page
 ├── components/
-│   ├── navigation.tsx        # Compact sticky header with centered nav links
+│   ├── navigation.tsx        # Responsive sticky header (logo optimized with priority)
 │   ├── hero.tsx              # Hero section with cyberpunk video background
 │   ├── features.tsx          # "Why Choose Us" features grid
-│   ├── courses.tsx           # 8 course cards with individual Apply Now buttons
-│   ├── contact.tsx           # Contact form with dramatic heading & Google Forms
+│   ├── courses.tsx           # 8 course cards with flipcard animation + single Apply Now button
+│   ├── contact.tsx           # Contact form with Google Forms integration
 │   ├── footer.tsx            # 3-column footer (dark navy #0A1F2E)
 │   └── ui/                   # shadcn/ui components (40+ files, 5 actively used)
 ├── lib/
@@ -83,13 +94,15 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the s
 │   ├── use-mobile.ts         # Mobile breakpoint detection hook
 │   └── use-toast.ts          # Toast notification hook
 ├── public/                   # Static assets
-│   ├── fsd-logo.png          # Site logo (32x24)
+│   ├── fsd-logo.png          # Site logo (optimized, 346KB)
 │   ├── cyberpunk-hero.mp4    # Hero background video
+│   ├── course images/        # 8 course background images (jpg/png)
 │   ├── instagram.svg         # Instagram icon (15x15)
 │   ├── linkedin.svg          # LinkedIn icon (15x15)
 │   └── whatsapp.svg          # WhatsApp icon (15x15)
 ├── components.json           # shadcn/ui configuration
-├── next.config.mjs           # Next.js configuration
+├── next.config.mjs           # Next.js configuration (static export)
+├── netlify.toml              # Netlify deployment configuration
 └── tsconfig.json             # TypeScript configuration
 ```
 
