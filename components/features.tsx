@@ -23,7 +23,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="sticky top-0 py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-card/30 min-h-screen flex flex-col justify-center scroll-mt-20">
+    <section id="features" className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-card/30 min-h-screen flex flex-col justify-center scroll-mt-20">
       <div className="mx-auto max-w-6xl w-full">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black mb-3 sm:mb-4 md:mb-6 text-balance tracking-tight">

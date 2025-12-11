@@ -10,10 +10,8 @@ export default function Home() {
     <div className="bg-background text-foreground">
       <Navigation />
       <Hero />
-      <div className="relative">
-        <Features />
-        <Courses />
-      </div>
+      <Features />
+      <Courses />
       <Contact />
       <Footer />
     </div>

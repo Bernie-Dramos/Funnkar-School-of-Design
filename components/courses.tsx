@@ -217,7 +217,7 @@ export default function Courses() {
   }
 
   return (
-    <section id="courses" className="relative z-10 py-16 sm:py-24 px-4 sm:px-6 bg-background rounded-t-3xl shadow-2xl flex flex-col">
+    <section id="courses" className="relative py-16 sm:py-24 px-4 sm:px-6 bg-background scroll-mt-20 flex flex-col">
       <div className="mx-auto max-w-6xl w-full">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 text-balance tracking-tight">
@@ -246,7 +246,8 @@ export default function Courses() {
                   style={{ 
                     transformStyle: 'preserve-3d',
                     WebkitTransformStyle: 'preserve-3d',
-                    transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
+                    transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                    WebkitTransform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
                   }}
                 >
                   {/* Back of card - Visual/Image side (shown initially) */}
@@ -298,7 +299,8 @@ export default function Courses() {
                     style={{ 
                       backfaceVisibility: 'hidden',
                       WebkitBackfaceVisibility: 'hidden',
-                      transform: 'rotateY(180deg)'
+                      transform: 'rotateY(180deg)',
+                      WebkitTransform: 'rotateY(180deg)'
                     }}
                   >
                     <div className={`w-full h-full bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col`}>
