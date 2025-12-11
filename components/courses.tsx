@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
@@ -259,9 +260,18 @@ export default function Courses() {
                     onClick={() => toggleFlip(course.id)}
                   >
                     <div 
-                      className="w-full h-full border border-foreground/15 rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center relative bg-cover bg-center"
-                      style={{ backgroundImage: `url(${course.image})` }}
-                    >                      
+                      className="w-full h-full border border-foreground/15 rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center relative overflow-hidden"
+                    >
+                      {/* Lazy-loaded background image */}
+                      <Image 
+                        src={course.image} 
+                        alt={course.title}
+                        fill
+                        loading="lazy"
+                        className="object-cover -z-10"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                      
                       {/* Badge at top */}
                       <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-10">
                         <span className="text-[10px] sm:text-xs font-bold text-white uppercase tracking-wider bg-[#071727] px-2 sm:px-3 py-0.5 sm:py-1 rounded">

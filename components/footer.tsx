@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Left Column - Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Image src="/fsd-logo.png" alt="Funnkar School of Design" width={32} height={24} className="h-6 w-auto"/>
+              <Image src="/fsd-logo.png" alt="Funnkar School of Design" width={32} height={24} className="h-6 w-auto" loading="lazy"/>
               <h3 className="text-[15px] font-medium text-white font-poppins">Funnkar School of Design</h3>
             </div>
             <p className="text-sm text-white/70 leading-relaxed">
@@ -51,13 +51,13 @@ export default function Footer() {
             <h4 className="text-base font-bold text-white mb-4 whitespace-nowrap">Follow Us</h4>
             <div className="flex gap-4 items-center">
               <Link href="https://www.linkedin.com/company/funnkarschoolofdesign/" aria-label="LinkedIn" className="hover:opacity-90 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-1 transition-all">
-                <Image src="/linkedin.svg" alt="LinkedIn" width={15} height={15} />
+                <Image src="/linkedin.svg" alt="LinkedIn" width={15} height={15} loading="lazy" />
               </Link>
               <Link href="https://wa.me/9325167605" aria-label="WhatsApp" className="hover:opacity-90 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-1 transition-all">
-                <Image src="/whatsapp.svg" alt="WhatsApp" width={15} height={15} />
+                <Image src="/whatsapp.svg" alt="WhatsApp" width={15} height={15} loading="lazy" />
               </Link>
               <Link href="https://www.instagram.com/funnkar.school.of.design?igsh=OXhmdnZqcXdxemho" aria-label="Instagram" className="hover:opacity-90 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-1 transition-all">
-                <Image src="/instagram.svg" alt="Instagram" width={15} height={15} />
+                <Image src="/instagram.svg" alt="Instagram" width={15} height={15} loading="lazy" />
               </Link>
             </div>
           </div>
