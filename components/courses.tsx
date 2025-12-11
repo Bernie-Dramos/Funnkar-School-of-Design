@@ -255,19 +255,13 @@ export default function Courses() {
                     className="absolute inset-0 w-full h-full backface-hidden rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer"
                     style={{ 
                       backfaceVisibility: 'hidden',
-                      zIndex: 30,
                     }}
                     onClick={() => toggleFlip(course.id)}
                   >
                     <div 
                       className="w-full h-full border border-foreground/15 rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center relative bg-cover bg-center"
                       style={{ backgroundImage: `url(${course.image})` }}
-                    >
-                      {/* Blue overlay at 50% opacity */}
-                      <div 
-                        className="absolute inset-0 rounded-xl sm:rounded-2xl bg-primary/50"
-                      ></div>
-                      
+                    >                      
                       {/* Badge at top */}
                       <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-10">
                         <span className="text-[10px] sm:text-xs font-bold text-white uppercase tracking-wider bg-[#071727] px-2 sm:px-3 py-0.5 sm:py-1 rounded">
@@ -295,7 +289,7 @@ export default function Courses() {
 
                   {/* Front of card - Course details (shown when flipped) */}
                   <div
-                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl sm:rounded-2xl"
+                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl sm:rounded-2xl z-30 overflow-hidden"
                     style={{ 
                       backfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)',
