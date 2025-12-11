@@ -13,7 +13,7 @@ const IMAGE_VERSION = "v2"
 const courses = [
   {
     id: 1,
-    title: "Sketching and 2D Art",
+    title: "Sketch and 2D Art",
     description: "Develop foundational drawing and sketching skills with digital 2D art techniques. Learn composition, perspective, and digital illustration.",
     level: "Beginner",
     duration: "1-3 months",
@@ -68,14 +68,14 @@ const courses = [
   },
   {
     id: 6,
-    title: "VFX Animation Diploma",
+    title: "VFX Animation",
     description: "Comprehensive VFX training covering compositing, motion graphics, and visual effects. Industry-ready diploma program.",
     level: "Professional",
     duration: "6-12 months",
     benefits: ["Diploma certification", "Portfolio development", "Exclusive e-books & learning Resources", "Job placement assistance"],
     tools: ["Ae", "Nuke", "Houdini", "Pr"],
     accentColor: "from-primary/28 to-primary/12",
-    // image: `/vfx-animation.png?v=${IMAGE_VERSION}`,
+    image: `/vfx-animation.png?v=${IMAGE_VERSION}`,
   },
   {
     id: 7,
@@ -255,7 +255,7 @@ export default function Courses() {
                     className="absolute inset-0 w-full h-full backface-hidden rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer"
                     style={{ 
                       backfaceVisibility: 'hidden',
-                      // WebkitBackfaceVisibility: 'visible'
+                      zIndex: 30,
                     }}
                     onClick={() => toggleFlip(course.id)}
                   >
@@ -298,12 +298,11 @@ export default function Courses() {
                     className="absolute inset-0 w-full h-full backface-hidden rounded-xl sm:rounded-2xl"
                     style={{ 
                       backfaceVisibility: 'hidden',
-                      // WebkitBackfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)',
                       WebkitTransform: 'rotateY(180deg)'
                     }}
                   >
-                    <div className={`w-full h-full bg-[#000000] border border-foreground/15 rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col`}>
+                    <div className={`w-full h-full bg-linear-to-br ${course.accentColor} border border-foreground/15 rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-7 hover:border-primary/60 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col`}>
                       <div 
                         className="flex-1 cursor-pointer"
                         onClick={(e) => {
