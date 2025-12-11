@@ -6,11 +6,12 @@ Marketing website for Funnkar School of Design built with **Next.js 16.0.7 (App 
 ## Tech Stack Architecture
 
 ### Core Stack
-- **Next.js 16.0.7** with App Router (`app/` directory) - Security patched
+- **Next.js 16.0.7** with App Router (`app/` directory) + **Static Export** (`output: 'export'`)
 - **React 19.2.0** (latest features enabled)
 - **TypeScript 5.x** (strict mode enabled but `ignoreBuildErrors: true` in config)
 - **Tailwind CSS v4.1.9** with CSS variables for theming
 - **pnpm** for package management
+- **Netlify** for deployment (static site, no serverless functions)
 
 ### UI Component System
 - **shadcn/ui** (New York style) - 40+ pre-built components in `components/ui/` (5 actively used)
@@ -26,13 +27,13 @@ Marketing website for Funnkar School of Design built with **Next.js 16.0.7 (App 
 app/                    # Next.js App Router
   page.tsx              # Main landing page (imports all sections)
   layout.tsx            # Root layout, metadata, fonts
-  globals.css           # Tailwind config + custom CSS variables
+  globals.css           # Tailwind config + custom CSS variables + 3D flip animations
 components/
-  navigation.tsx        # Compact sticky header (h-9 to h-15), centered nav, white Contact Us button
-  hero.tsx              # Hero with cyberpunk video background (opacity-50)
-  features.tsx          # "Why Choose Us" features grid (901px height)
-  courses.tsx           # 8 course cards with individual Apply Now buttons + Google Forms
-  contact.tsx           # Contact form with dramatic heading + Google Forms integration
+  navigation.tsx        # Responsive sticky header (h-9 to h-15), logo with priority loading
+  hero.tsx              # Hero with cyberpunk video background
+  features.tsx          # "Why Choose Us" features grid with scroll-mt-16
+  courses.tsx           # 8 flipcard course cards + single Apply Now button + Google Forms dialog
+  contact.tsx           # Contact form with Google Forms integration
   footer.tsx            # 3-column dark footer (bg-[#0A1F2E])
   ui/                   # shadcn/ui components (DO NOT edit directly)
 hooks/
@@ -95,19 +96,20 @@ import Image from "next/image"
 
 <Image 
   src="/fsd-logo.png"      // Files in public/ are served from root
-  width={32} height={24}   // Logo dimensions: 32x24
+  width={24} height={18}   // Actual dimensions for proper aspect ratio
   alt="..."                // Required for accessibility
+  priority                 // Preload critical images (logo in nav)
 />
 ```
 
-**Config**: `images: { unoptimized: true }` in `next.config.mjs` - images not optimized during build (likely for static export).
+**Config**: `output: 'export'` and `images: { unoptimized: true }` in `next.config.mjs` for static export.
 
 **Assets in public/**:
-- `/fsd-logo.png` - Site logo (32x24) - used in navigation and footer
+- `/fsd-logo.png` - Site logo (346KB, optimized) - used in navigation and footer with priority loading
 - `/cyberpunk-hero.mp4` - Hero background video (autoplay, loop, muted, playsInline)
-- `/instagram.svg` - Instagram icon (15x15)
-- `/linkedin.svg` - LinkedIn icon (15x15)
-- `/whatsapp.svg` - WhatsApp icon (15x15)
+- `/sketching-2d-art.jpg`, `/3d-modelling.jpg`, `/interior-design.jpg`, `/game-design.jpg` - Course card backgrounds
+- `/3d-animation.png`, `/vfx-animation.jpg`, `/fine-arts.jpg`, `/graphics-design.jpg` - Course card backgrounds
+- `/instagram.svg`, `/linkedin.svg`, `/whatsapp.svg` - Social icons (15x15)
 
 **Video Background** (hero.tsx):
 ```tsx
@@ -189,10 +191,12 @@ Uses hash-based anchor navigation:
 
 **Navbar Design (navigation.tsx)**:
 - Compact height: h-9 sm:h-12 lg:h-15
-- Logo + brand: Left-aligned with -ml-15 offset
+- Logo + brand: Left-aligned, logo h-4 sm:h-5 lg:h-7, text scales 11px → 13px → 15px, lg:-ml-15 offset
+- Logo optimization: `priority` attribute for instant loading (346KB optimized file)
 - Nav links: Centered with -ml-12 offset, text-[10px] lg:text-xs
-- Contact Us button: Right-aligned, white bg with black text, text-[10px] lg:text-xs
+- Contact Us button: Right-aligned, white bg with blue text, scale-up hover effect
 - Mobile: Hamburger menu with dropdown
+- Responsive: Brand name scales with whitespace-nowrap to prevent wrapping
 
 **Footer Design (footer.tsx)**:
 - Background: bg-[#0A1F2E] (dark navy)
@@ -205,9 +209,12 @@ Uses hash-based anchor navigation:
 ## Critical Constraints
 
 ### Build Configuration
+- **Static Export**: `output: 'export'` in next.config.mjs - generates static HTML/CSS/JS
 - **TypeScript errors ignored during build** - code may have type issues that won't fail CI
-- **Images unoptimized** - likely deploying as static site
-- No database, API routes, or dynamic data fetching
+- **Images unoptimized** - required for static export
+- **Deployment**: Netlify with `publish = "out"` directory
+- No serverless functions, API routes, or dynamic data fetching
+- No database connections or authentication
 
 ### Responsive Design Requirements
 All components optimized for:
@@ -254,17 +261,23 @@ Key patterns:
 
 ### Application Form (courses.tsx)
 Interactive dialog modal with shadcn/ui components + Google Forms:
-- **Dialog**: Modal popup triggered by individual "Apply Now" buttons on course cards
-- **Pre-selection**: Clicking Apply Now on a course pre-selects that course in the form
+- **Dialog**: Modal popup triggered by single "Apply Now" button below all course cards
+- **3D Flipcard**: Course cards flip on click to show image backgrounds with blue overlay (50% opacity)
 - **Form Fields**:
   - First Name & Last Name (text inputs)
   - Email (email input) & Phone Number (tel input)
   - Date of Birth: 3 separate Select dropdowns (Day, Month, Year) with scrollable options
-  - Course Selection: Disabled input showing pre-selected course
-- **State Management**: `useState` for form data, date values, and selectedCourse
+  - Course Selection: Select dropdown with all 8 courses
+- **State Management**: `useState` for form data, date values, selectedCourse, and flippedCards array
 - **Google Forms Integration**:
-  - Entry IDs: 1588074809 (firstName), 1808825635 (lastName), 1031876416 (email), 1638210572 (phoneNumber), 1732680046 (courseSelection)
+  - Form ID: 1FAIpQLSe7Fjiba9pZB3S6s2N_64xvT9J1MrkK_ftXsTiEtqVHCIMzmg
+  - Entry IDs: 822288240 (name), 61734640 (email), 1888045156 (phone), 2139661344_day/month/year (dob), 772600549 (course)
   - Submission via fetch with mode: 'no-cors'
+- **Card Design**:
+  - Front: Course details, benefits, tools
+  - Back: Course image with blue overlay, level badge (top-left), duration badge (top-right), "Learn [Course]" badge (bottom)
+  - Badges: Level (#071727 bg, white text, 4px radius), Duration (white bg, black text, 4px radius), Learn badge (gradient, 8px radius)
+  - Hover effects: Vertical pop-up on cards, scale + color change on Apply Now button
 
 ### Contact Form (contact.tsx)
 Google Forms-integrated contact form:
