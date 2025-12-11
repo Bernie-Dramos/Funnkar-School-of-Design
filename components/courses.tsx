@@ -236,7 +236,7 @@ export default function Courses() {
             return (
               <div
                 key={course.id}
-                className="w-full max-w-[22rem] mx-auto sm:w-[20rem] lg:w-[24rem] h-[350px] sm:h-[380px] lg:h-[400px] perspective-1000 hover:-translate-y-2 transition-transform duration-300"
+                className="w-full max-w-88 mx-auto sm:w-[20rem] lg:w-[24rem] h-[350px] sm:h-[380px] lg:h-[400px] perspective-1000 hover:-translate-y-2 transition-transform duration-300"
                 style={{ perspective: '1000px' }}
               >
                 <div
