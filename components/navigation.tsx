@@ -11,7 +11,7 @@ export default function Navigation() {
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-9 sm:h-12 lg:h-15">
+        <div className="flex items-center justify-between h-9 sm:h-[54px] lg:h-15">
           {/* Brand Name - Left side */}
           <Link href="/" className="flex items-center gap-1.5 sm:gap-2 hover:opacity-90 transition-opacity shrink-0 lg:-ml-15">
             <Image
@@ -19,10 +19,10 @@ export default function Navigation() {
               alt="Funnkar School of Design"
               width={24}
               height={18}
-              className="h-4 w-auto sm:h-5 lg:h-7"
+              className="h-4 w-auto sm:h-[22px] lg:h-7"
               priority
             />
-            <span className="text-[11px] sm:text-[13px] lg:text-[15px] font-medium tracking-tight text-foreground font-poppins whitespace-nowrap">
+            <span className="text-[11px] sm:text-[14px] lg:text-[15px] font-medium tracking-tight text-foreground font-poppins whitespace-nowrap">
               Funnkar School Of Design
             </span>
           </Link>
@@ -31,19 +31,19 @@ export default function Navigation() {
           <div className="hidden md:flex items-center justify-center gap-0.5 lg:gap-1 flex-1 mx-4 -ml-12">
             <Link 
               href="#hero" 
-              className="px-2 lg:px-3 py-1 text-[10px] lg:text-xs font-semibold text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all"
+              className="px-2 lg:px-3 py-1 text-[10px] sm:text-[11px] lg:text-xs font-semibold text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all"
             >
               Home
             </Link>
             <Link 
               href="#features" 
-              className="px-2 lg:px-3 py-1 text-[10px] lg:text-xs font-semibold text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all whitespace-nowrap"
+              className="px-2 lg:px-3 py-1 text-[10px] sm:text-[11px] lg:text-xs font-semibold text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all whitespace-nowrap"
             >
               Why Choose Us
             </Link>
             <Link 
               href="#courses" 
-              className="px-2 lg:px-3 py-1 text-[10px] lg:text-xs font-semibold text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all"
+              className="px-2 lg:px-3 py-1 text-[10px] sm:text-[11px] lg:text-xs font-semibold text-foreground/80 hover:text-foreground hover:bg-accent/10 rounded-md transition-all"
             >
               Courses
             </Link>
@@ -53,7 +53,7 @@ export default function Navigation() {
           <div className="hidden md:flex items-center shrink-0">
             <Link 
               href="#contact" 
-              className="px-3 lg:px-4 py-1 lg:py-1.5 text-[10px] lg:text-xs font-semibold bg-white text-primary rounded-full hover:scale-110 hover:shadow-lg hover:shadow-white/20 transition-all shadow-sm border border-border/20 whitespace-nowrap"
+              className="px-3 lg:px-4 py-1 sm:py-1.5 lg:py-1.5 text-[10px] sm:text-[11px] lg:text-xs font-semibold bg-white text-primary rounded-full hover:scale-110 hover:shadow-lg hover:shadow-white/20 transition-all shadow-sm border border-border/20 whitespace-nowrap"
             >
               Contact Us
             </Link>
