@@ -37,9 +37,14 @@ export default function Hero() {
           <Link href="#courses" className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-primary text-primary-foreground rounded-full font-bold hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/30 text-sm sm:text-base md:text-lg w-full sm:w-auto text-center">
             Explore Courses
           </Link>
-          <Link href="https://drive.google.com/drive/folders/1wQoB3ZE5nJu9UR24QhMWpPNj8NMszD4H?usp=drive_link" target="_blank" rel="noopener noreferrer" className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 border-2 border-foreground/40 rounded-full font-bold hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all text-sm sm:text-base md:text-lg w-full sm:w-auto text-center">
+          <a
+            href="/FSoD-Brochure.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 border-2 border-foreground/40 rounded-full font-bold hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+          >
             Get Brochure
-          </Link>
+          </a>
         </div>
       </div>
     </section>
