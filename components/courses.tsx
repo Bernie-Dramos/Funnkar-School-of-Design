@@ -8,6 +8,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
+// Google Sheets API config (set NEXT_PUBLIC_GOOGLE_SHEETS_API_KEY and NEXT_PUBLIC_GOOGLE_SHEETS_ID in .env.local)
+const SHEETS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_API_KEY
+const SHEETS_SPREADSHEET_ID = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_ID
+const SHEETS_RANGE = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_RANGE || "Applications!A:F"
+
 // Cache-busting version for course images (update manually when images change)
 const IMAGE_VERSION = "v2"
 
@@ -107,6 +112,7 @@ export default function Courses() {
   const [day, setDay] = useState("")
   const [month, setMonth] = useState("")
   const [year, setYear] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [flippedCards, setFlippedCards] = useState<number[]>([])
   const [formData, setFormData] = useState({
     firstName: "",
@@ -167,6 +173,44 @@ export default function Courses() {
     )
   }
 
+  const appendToSheet = async (payload: {
+    fullName: string
+    email: string
+    phone: string
+    dateOfBirth: string
+    selectedCourse: string
+  }) => {
+    if (!SHEETS_API_KEY || !SHEETS_SPREADSHEET_ID) {
+      throw new Error("Google Sheets API credentials are missing.")
+    }
+
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEETS_SPREADSHEET_ID}/values/${encodeURIComponent(SHEETS_RANGE)}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS&key=${SHEETS_API_KEY}`
+
+    const body = {
+      values: [[
+        new Date().toISOString(),
+        payload.fullName,
+        payload.email,
+        payload.phone,
+        payload.dateOfBirth,
+        payload.selectedCourse,
+      ]],
+    }
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+
+    if (!response.ok) {
+      const errorText = await response.text()
+      throw new Error(`Sheets append failed: ${errorText || response.statusText}`)
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
@@ -183,37 +227,27 @@ export default function Courses() {
     
     const dateOfBirth = `${day}/${month}/${year}`
     const fullName = `${formData.firstName} ${formData.lastName}`.trim()
+
+    setIsSubmitting(true)
     
-    // Submit to Google Form
+    // Submit to Google Sheets via Sheets API
     try {
-      const googleFormData = new FormData()
-      
-      googleFormData.append('entry.822288240', fullName)
-      googleFormData.append('entry.61734640', formData.email)
-      googleFormData.append('entry.1888045156', formData.phone)
-      googleFormData.append('entry.2139661344_year', year || '')
-      googleFormData.append('entry.2139661344_month', month || '')
-      googleFormData.append('entry.2139661344_day', day || '')
-      googleFormData.append('entry.772600549', formData.selectedCourse)
-      googleFormData.append('entry.772600549_sentinel', '')
-      googleFormData.append('fvv', '1')
-      googleFormData.append('partialResponse', '[null,null,"8810687125528681974"]')
-      googleFormData.append('pageHistory', '0')
-      googleFormData.append('fbzx', '8810687125528681974')
-      
-      await fetch('https://docs.google.com/forms/d/e/1FAIpQLSe7Fjiba9pZB3S6s2N_64xvT9J1MrkK_ftXsTiEtqVHCIMzmg/formResponse', {
-        method: 'POST',
-        body: googleFormData,
-        mode: 'no-cors'
+      await appendToSheet({
+        fullName,
+        email: formData.email,
+        phone: formData.phone,
+        dateOfBirth,
+        selectedCourse: formData.selectedCourse,
       })
-      
+
       alert("Application submitted successfully!")
-      console.log("Form submitted successfully!")
       resetForm()
       setOpen(false)
     } catch (error) {
       console.error("Submission error:", error)
       alert("There was an error submitting your application. Please try again.")
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -492,7 +526,7 @@ export default function Courses() {
                 </div>
 
             <Button type="submit" className="w-full" size="lg">
-              Submit Application
+              {isSubmitting ? "Submitting..." : "Submit Application"}
             </Button>
           </form>
         </DialogContent>
