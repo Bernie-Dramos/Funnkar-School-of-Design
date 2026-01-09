@@ -20,7 +20,10 @@ export const metadata: Metadata = {
   description:
     "Learn design, branding, and UX/UI from industry experts. Explore courses and mini degrees at Funnkar School of Design.",
   icons: {
-    icon: "/fsd-logo.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/fsd-logo.png", type: "image/png" },
+    ],
     apple: "/fsd-logo.png",
   },
 }
