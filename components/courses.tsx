@@ -365,6 +365,8 @@ export default function Courses() {
         {/* Apply Now Section */}
         <div className="mt-8 sm:mt-12 text-center">
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={() => {
               setFormData({ ...formData, selectedCourse: "" })
               setOpen(true)
