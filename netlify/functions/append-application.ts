@@ -30,7 +30,6 @@ export const handler: Handler = async (event) => {
       credentials: creds,
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     })
-    const authClient = await auth.getClient()
 
     const range = process.env.GOOGLE_SHEETS_RANGE || "Applications!A:F"
     const rows = [[
@@ -43,7 +42,7 @@ export const handler: Handler = async (event) => {
     ]]
 
     await sheets.spreadsheets.values.append({
-      auth: authClient,
+      auth,
       spreadsheetId: process.env.GOOGLE_SHEETS_ID,
       range,
       valueInputOption: "USER_ENTERED",
