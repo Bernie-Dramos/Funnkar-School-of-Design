@@ -77,7 +77,7 @@ export default function Contact() {
               <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
             </div>
             <h3 className="font-bold mb-2 text-sm sm:text-base font-poppins">Phone</h3>
-            <p className="text-foreground/80 text-xs sm:text-sm">+91 9325167605 | +91 9209165351</p>
+            <p className="text-foreground/80 text-xs sm:text-sm">+91 9325167605</p>
           </div>
           <div className="text-center">
             <div className="inline-block p-2 sm:p-3 rounded-xl bg-accent/10 mb-3 sm:mb-4">
