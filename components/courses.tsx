@@ -8,11 +8,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-// Google Sheets API config (set NEXT_PUBLIC_GOOGLE_SHEETS_API_KEY and NEXT_PUBLIC_GOOGLE_SHEETS_ID in .env.local)
-const SHEETS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_API_KEY
-const SHEETS_SPREADSHEET_ID = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_ID
-const SHEETS_RANGE = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_RANGE || "Applications!A:F"
-
 // Cache-busting version for course images (update manually when images change)
 const IMAGE_VERSION = "v2"
 
@@ -173,44 +168,6 @@ export default function Courses() {
     )
   }
 
-  const appendToSheet = async (payload: {
-    fullName: string
-    email: string
-    phone: string
-    dateOfBirth: string
-    selectedCourse: string
-  }) => {
-    if (!SHEETS_API_KEY || !SHEETS_SPREADSHEET_ID) {
-      throw new Error("Google Sheets API credentials are missing.")
-    }
-
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEETS_SPREADSHEET_ID}/values/${encodeURIComponent(SHEETS_RANGE)}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS&key=${SHEETS_API_KEY}`
-
-    const body = {
-      values: [[
-        new Date().toISOString(),
-        payload.fullName,
-        payload.email,
-        payload.phone,
-        payload.dateOfBirth,
-        payload.selectedCourse,
-      ]],
-    }
-
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-
-    if (!response.ok) {
-      const errorText = await response.text()
-      throw new Error(`Sheets append failed: ${errorText || response.statusText}`)
-    }
-  }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
@@ -230,15 +187,26 @@ export default function Courses() {
 
     setIsSubmitting(true)
     
-    // Submit to Google Sheets via Sheets API
+    // Submit to Netlify Function which writes to Google Sheets via service account
     try {
-      await appendToSheet({
-        fullName,
-        email: formData.email,
-        phone: formData.phone,
-        dateOfBirth,
-        selectedCourse: formData.selectedCourse,
+      const response = await fetch("/.netlify/functions/append-application", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName,
+          email: formData.email,
+          phone: formData.phone,
+          dateOfBirth,
+          selectedCourse: formData.selectedCourse,
+        }),
       })
+
+      if (!response.ok) {
+        const message = await response.text()
+        throw new Error(message || "Failed to submit application.")
+      }
 
       alert("Application submitted successfully!")
       resetForm()
